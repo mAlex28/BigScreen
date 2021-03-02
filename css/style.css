@@ -16,14 +16,19 @@ body {
 /* Navigation */
 header {
     background-image: url(../img/background.jpg);
+    background-size: cover;
 }
 
 .navbar {
     text-transform: uppercase; 
     font-weight: 700;
-    font-size: 14.4px;  /* 1rem = 16px */
+    font-size: 12px;  /* 1rem = 16px */
     letter-spacing: 1.6px;
     background-color: rgb(255, 0, 0) !important;
+}
+
+.navbar-brand {
+    padding-left: 11.2px;
 }
 
 .navbar-nav li {
@@ -32,7 +37,7 @@ header {
 
 .navbar-dark .navbar-nav .nav-link {
     color: white;
-    padding-top: 11.2px;
+    padding-top: 11px;
 }
 
 .navbar-dark .navbar-nav .nav-link.active,
@@ -40,8 +45,79 @@ header {
     color: #bec0bf;
 }
 
-/* Landing page */
+/* Landing */
+.container {
+    padding-top: 80px;
+}
+
 .carousel {
-	margin: 50px auto;
+	margin: 30px auto;
 	padding: 0 70px;
+}
+
+header .row .col-md-5 {
+    padding: 4.2vmin 1vmin;
+}
+
+header .row .col-md-7 {
+    padding: 22vmin 1vmin;
+    padding-bottom: 35vmin;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+header .row .col-md-5 {
+    width: 90%;
+}
+
+.carousel div img {
+ 
+    width: auto;
+}
+
+header .container .col-md-7 h6 {
+    padding: 1vmin;
+    letter-spacing: 4px;
+    font-size: 3vmin;
+}
+
+header .container .col-md-7 h1 {
+    font-size: 6vmin;
+    font-weight: bold;
+    padding: 0.1em 0em;
+}
+
+header .container .col-md-7 p {
+    padding: 1vmin 5vmin;
+}
+
+header .container .col-md-7 button {
+    font-weight: bold;
+}
+
+/* Login or register */
+.offset {
+    background-color: black;
+}
+.narrow {
+    width: 75%;
+    margin: 24px auto;
+    padding-top: 32px;
+}
+
+/* Footer */
+footer .container .row .social a{
+    color: white;
+    size: 10px;
+}
+
+.fa:hover {
+    opacity: 0.7;
+  }
+
+.fa {
+    padding: 20px;
+    font-size: 30px;
+    width: 50px;
+    text-align: center;
+    text-decoration: none;
 }
