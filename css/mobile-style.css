@@ -1,0 +1,29 @@
+/* Media Queries */
+
+@media (max-width: 767px){
+    .caption h1 {
+        font-size: 36px;
+        letter-spacing: 9px;
+        padding-bottom: 8px;
+    }
+
+    .caption h3 {
+        font-size: 18px;
+        padding-bottom: 18px;
+    }
+
+    .btn-lg{
+        font-size: 16px;
+        padding: 8px 16px;
+    }
+
+    .narrow h1 {
+        font-size: 24px;
+    }
+
+    .menu img {
+        max-width: 50%;
+        display: block;
+        margin: 0 auto;
+    }
+}
