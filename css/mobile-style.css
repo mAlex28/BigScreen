@@ -1,29 +1,21 @@
 /* Media Queries */
-
-@media (max-width: 767px){
-    .caption h1 {
-        font-size: 36px;
-        letter-spacing: 9px;
-        padding-bottom: 8px;
+@media only screen and (max-width:768px) {
+    #landingTopic > h6 {
+        font-size: 20px;
+    }
+    header .navbar-brand {
+        padding-left: 1rem;
     }
 
-    .caption h3 {
-        font-size: 18px;
-        padding-bottom: 18px;
+    #loginReg .row .col-md-6 {
+        position: initial;
+        width: initial;
+        height: initial;
     }
 
-    .btn-lg{
-        font-size: 16px;
-        padding: 8px 16px;
-    }
-
-    .narrow h1 {
-        font-size: 24px;
-    }
-
-    .menu img {
-        max-width: 50%;
-        display: block;
-        margin: 0 auto;
+    .row, .container-fluid {
+        margin-left: 0px!important;
+        margin-right: 0px!important;
     }
 }
+

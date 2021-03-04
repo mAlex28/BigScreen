@@ -47,7 +47,7 @@
         </div>
 
         <!-- Landing page -->
-        <div class="container text-center">
+        <div class="container text-center landPage">
             <div class="row">
                 <div id="landingTopic" class="col-md-6 col-sm-12">
                     <h6>BIG SCREEN</h6>
@@ -85,7 +85,7 @@
 
     <!-- Login / Register -->
     <div id="loginReg" class="offset">
-        <div class="col-12 narrow text-center">
+        <div class="col-12 col-md-6 narrow text-center">
                 <h5>Join with us ...</h5>
                 <p>Lorem ipsum dolor sit amet.</p>
                 <a class="btn btn-secondary btn-md" href="login.php">Log In</a>
@@ -98,186 +98,144 @@
         <div class="col-12 narrow text-center">
             <h5>View Latest Movies</h5>
             <hr class="bg-white" style="width:10rem;height:2px">
-            <!--Carousel Wrapper-->
-<div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
+            <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
+                <!-- Slides -->
+                <div class="carousel-inner" role="listbox">
+                    <!-- First slide -->
+                    <div class="carousel-item active">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="card mb-2">
+                                    <img class="card-img-top img-fluid" src="img/notimetodie.jpg" alt="Card image cap">
+                                    <div class="card-body bg-dark">
+                                        <h4 class="card-title">Move title <br> (year)</h4>           
+                                    </div>
+                                </div>
+                            </div>
+                
+                            <div class="col-md-3 d-none d-md-block">
+                                <div class="card mb-2">
+                                    <img class="card-img-top" src="img/anotherround.jpg" alt="Card image cap">
+                                    <div class="card-body bg-dark">
+                                        <h4 class="card-title">Move title <br> (year)</h4>           
+                                    </div>
+                                </div>
+                            </div>
+                
+                            <div class="col-md-3 d-none d-md-block">
+                                <div class="card mb-2">
+                                    <img class="card-img-top" src="img/judas&blackmessiah.jpg" alt="Card image cap">
+                                    <div class="card-body bg-dark">
+                                        <h4 class="card-title">Move title <br> (year)</h4>           
+                                    </div>
+                                </div>
+                            </div>
+                
+                            <div class="col-md-3 d-none d-md-block">
+                                <div class="card mb-2">
+                                    <img class="card-img-top" src="img/dunkirk.jpg" alt="Card image cap">
+                                    <div class="card-body bg-dark">
+                                        <h4 class="card-title">Move title <br> (year)</h4>           
+                                    </div>
+                                </div>
+                            </div>
 
-    <!--Controls-->
-    <div class="controls-top">
-      <a class="btn-floating" href="#multi-item-example" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
-      <a class="btn-floating" href="#multi-item-example" data-slide="next"><i class="fa fa-chevron-right"></i></a>
-    </div>
-    <!--/.Controls-->
-  
-    <!--Indicators-->
-    <ol class="carousel-indicators">
-      <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
-      <li data-target="#multi-item-example" data-slide-to="1"></li>
-      <li data-target="#multi-item-example" data-slide-to="2"></li>
-    </ol>
-    <!--/.Indicators-->
-  
-    <!--Slides-->
-    <div class="carousel-inner" role="listbox">
-  
-      <!--First slide-->
-      <div class="carousel-item active">
-  
-        <div class="row">
-  
-          <div class="col-md-3">
-            <div class="card mb-2">
-              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
-                alt="Card image cap">
-              <div class="card-body">
-                <h4 class="card-title">Move title <br> (year)</h4>           
+                        </div>
+                    </div>
 
-              </div>
-            </div>
-          </div>
-  
-          <div class="col-md-3 d-none d-md-block">
-            <div class="card mb-2">
-              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(18).jpg"
-                alt="Card image cap">
-              <div class="card-body">
-                <h4 class="card-title">Move title <br> (year)</h4>           
+                    <!-- Second slide -->
+                    <div class="carousel-item">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="card mb-2">
+                                    <img class="card-img-top" src="img/notimetodie.jpg" alt="Card image cap">
+                                    <div class="card-body bg-dark">
+                                        <h4 class="card-title">Move title <br> (year)</h4>           
+                                    </div>
+                                </div>
+                            </div>
+                
+                            <div class="col-md-3 d-none d-md-block">
+                                <div class="card mb-2">
+                                    <img class="card-img-top" src="img/anotherround.jpg" alt="Card image cap">
+                                    <div class="card-body bg-dark">
+                                        <h4 class="card-title">Move title <br> (year)</h4>           
+                                    </div>
+                                </div>
+                            </div>
+                
+                            <div class="col-md-3 d-none d-md-block">
+                                <div class="card mb-2">
+                                    <img class="card-img-top" src="img/judas&blackmessiah.jpg" alt="Card image cap">
+                                    <div class="card-body bg-dark">
+                                        <h4 class="card-title">Move title <br> (year)</h4>           
+                                    </div>
+                                </div>
+                            </div>
+                
+                            <div class="col-md-3 d-none d-md-block">
+                                <div class="card mb-2">
+                                    <img class="card-img-top" src="img/dunkirk.jpg" alt="Card image cap">
+                                    <div class="card-body bg-dark">
+                                        <h4 class="card-title">Move title <br> (year)</h4>           
+                                    </div>
+                                </div>
+                            </div>
 
-              </div>
-            </div>
-          </div>
-  
-          <div class="col-md-3 d-none d-md-block">
-            <div class="card mb-2">
-              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
-                alt="Card image cap">
-              <div class="card-body">
-                <h4 class="card-title">Move title <br> (year)</h4>           
+                        </div>
+                    </div>
 
-              </div>
-            </div>
-          </div>
-  
-          <div class="col-md-3 d-none d-md-block">
-            <div class="card mb-2">
-              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
-                alt="Card image cap">
-              <div class="card-body">
-                <h4 class="card-title">Move title <br> (year)</h4>           
+                    <!-- Third slide -->
+                    <div class="carousel-item">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="card mb-2">
+                                    <img class="card-img-top" src="img/notimetodie.jpg" alt="Card image cap">
+                                    <div class="card-body bg-dark">
+                                        <h4 class="card-title">Move title <br> (year)</h4>           
+                                    </div>
+                                </div>
+                            </div>
+                
+                            <div class="col-md-3 d-none d-md-block">
+                                <div class="card mb-2">
+                                    <img class="card-img-top" src="img/anotherround.jpg" alt="Card image cap">
+                                    <div class="card-body bg-dark">
+                                        <h4 class="card-title">Move title <br> (year)</h4>           
+                                    </div>
+                                </div>
+                            </div>
+                
+                            <div class="col-md-3 d-none d-md-block">
+                                <div class="card mb-2">
+                                    <img class="card-img-top" src="img/judas&blackmessiah.jpg" alt="Card image cap">
+                                    <div class="card-body bg-dark">
+                                        <h4 class="card-title">Move title <br> (year)</h4>           
+                                    </div>
+                                </div>
+                            </div>
+                
+                            <div class="col-md-3 d-none d-md-block">
+                                <div class="card mb-2">
+                                    <img class="card-img-top" src="img/dunkirk.jpg" alt="Card image cap">
+                                    <div class="card-body bg-dark">
+                                        <h4 class="card-title">Move title <br> (year)</h4>           
+                                    </div>
+                                </div>
+                            </div>
 
-              </div>
-            </div>
-          </div>
-        </div>
-  
-      </div>
-      <!--/.First slide-->
-  
-      <!--Second slide-->
-      <div class="carousel-item">
-  
-        <div class="row">
-  
-            <div class="col-md-3 d-none d-md-block">
-                <div class="card mb-2">
-                  <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(48).jpg"
-                    alt="Card image cap">
-                  <div class="card-body">
-                    <h4 class="card-title">Move title <br> (year)</h4>           
-                  </div>
+                        </div>
+                    </div>    
                 </div>
-              </div>
-  
-          <div class="col-md-3 d-none d-md-block">
-            <div class="card mb-2">
-              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(48).jpg"
-                alt="Card image cap">
-              <div class="card-body">
-                <h4 class="card-title">Move title <br> (year)</h4>           
-              </div>
-            </div>
-          </div>
-  
-          <div class="col-md-3 d-none d-md-block">
-            <div class="card mb-2">
-              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(48).jpg"
-                alt="Card image cap">
-              <div class="card-body">
-                <h4 class="card-title">Move title <br> (year)</h4>           
-              </div>
-            </div>
-          </div>
-  
-          <div class="col-md-3 d-none d-md-block">
-            <div class="card mb-2">
-              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(48).jpg"
-                alt="Card image cap">
-              <div class="card-body">
-                <h4 class="card-title">Move title <br> (year)</h4>           
-              </div>
-            </div>
-          </div>
-  
-        </div>
-  
-      </div>
-      <!--/.Second slide-->
-  
-      <!--Third slide-->
-      <div class="carousel-item">
-  
-        <div class="row">
-  
-            <div class="col-md-3 d-none d-md-block">
-                <div class="card mb-2">
-                  <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(51).jpg"
-                    alt="Card image cap">
-                  <div class="card-body">
-                    <h4 class="card-title">Move title <br> (year)</h4>
-                  </div>
+
+                <!-- Controls -->
+                <div class="controls-top">
+                    <a class="btn-floating" href="#multi-item-example" data-slide="prev"><i class="fas fa-arrow-circle-left fa-2x pr-2 pl-2"></i></a>
+                    <a class="btn-floating" href="#multi-item-example" data-slide="next"><i class="fas fa-arrow-circle-right fa-2x pr-2 pl-2"></i></a>
                 </div>
-            </div>
-  
-          <div class="col-md-3 d-none d-md-block">
-            <div class="card mb-2">
-              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(51).jpg"
-                alt="Card image cap">
-              <div class="card-body">
-                <h4 class="card-title">Move title <br> (year)</h4>
-              </div>
-            </div>
-          </div>
-  
-          <div class="col-md-3 d-none d-md-block">
-            <div class="card mb-2">
-              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(51).jpg"
-                alt="Card image cap">
-              <div class="card-body">
-                <h4 class="card-title">Move title <br> (year)</h4>
-              </div>
-            </div>
-          </div>
-  
-          <div class="col-md-3 d-none d-md-block">
-            <div class="card mb-2">
-              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(51).jpg"
-                alt="Card image cap">
-              <div class="card-body">
-                <h4 class="card-title">Move title <br> (year)</h4>
-              </div>
-            </div>
-          </div>
-  
+
+            </div> 
         </div>
-  
-      </div>
-      <!--/.Third slide-->
-  
-    </div>
-    <!--/.Slides-->
-  
-  </div>
-  <!--/.Carousel Wrapper-->
-        </div> 
     </div>
 
     <!-- News -->
@@ -355,5 +313,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+    <script language="JavaScript" type="text/javascript" src="src/main.js"></script>
 </body>
 </html>

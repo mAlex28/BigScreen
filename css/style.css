@@ -67,7 +67,7 @@ header .container {
 header .container .col-md-6 h6 {
     padding: 1vmin;
     letter-spacing: 4px;
-    font-size: 3vmin;
+    font-size: 20px;
 }
 
 header .container .col-md-6 h1 {
@@ -117,13 +117,32 @@ header .container .col-md-6 button {
 }
 
 /* Latest Movies*/
+#latest h4 {
+    font-size: 15px;
+}
+
+#latest .carousel{
+    padding-top: 10px;
+}
+
+#latest .carousel .controls-top {
+    padding-top: 12px;
+    padding-bottom: 15px;
+}
+
+#latest .controls-top a{
+    color: rgb(255, 0, 0);
+}
+
+#latest .controls-top a:hover{
+    color: rgb(190, 2, 2);
+}
 
 
 /* News */
 #news {
     padding-bottom: 30px;
 }
-
 
 /* Footer */
 footer {
