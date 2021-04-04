@@ -1,7 +1,7 @@
-<?php
-    require_once('config.php')
-?>
 
+<?php
+    require_once('config.php');
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,24 +15,11 @@
 </head>
 <body data-spy="scroll" data-target="#navbarResponsive">
     <div>
-        <?php
-            if (isset($_POST['register'])) {
-                $firstname = $_POST['fname'];
-                $lastname = $_POST['lname'];
-                $email = $_POST['email'];
-                $username = $_POST['username'];
-                $password = $_POST['password'];
+    <?php
+        
 
-                $sql = "INSERT INTO User (fname, lname, email, username, password) values (?,?,?,?,?)";
-                $statemtentinsert = $db->prepare($sql);
-                $result = $statemtentinsert->execute([$firstname, $lastname, $email, $username, $password]);
-                if ($result) {
-                    echo 'successfully registered';
-                } else {
-                    echo 'an error occurred';
-                }
-            }
-        ?>
+   
+    ?> 
     </div>
 
     <div class="container-fluid p-0">
@@ -71,8 +58,8 @@
     <div class="register">
         <form action="register.php" method="POST" class="box">
             <h1>Register</h1>
-            <input type="text" id="firstname" placeholder="First Name" name="fname" required>
-            <input type="text" id="lastname" placeholder="Last Name" name="lname" required>
+            <input type="text" id="firstname" placeholder="First Name" name="firstname" required>
+            <input type="text" id="lastname" placeholder="Last Name" name="lastname" required>
             <input type="email" id="email" placeholder="Email" name="email" required>
             <input type="text" id="username" placeholder="Username" name="username" required>
             <input type="password" id="password" placeholder="Password" name="password" required>
@@ -83,54 +70,141 @@
     </div>
 
     <!-- Script files -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-    <script type="text/javascript"> 
-        $(function() { 
-            $('#register').on('click', function(e) {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var username_state = false;
+            var email_state = false;
 
+            $('#username').on('blur', function(){
+                var username = $('#username').val();
+                if (username == '') {
+                    username_state = false;
+                    return;
+                }
+                $.ajax({
+                    url: 'reg_process.php',
+                    type: 'post',
+                    data: {
+                        'username_check' : 1,
+                        'username' : username,
+                    },
+                    success: function(response){
+                    if (response == 'taken' ) {
+                        username_state = false;
+                        $('#username').parent().removeClass();
+                        $('#username').parent().addClass("form_error");
+                        $('#username').siblings("span").text('Sorry... Username already taken');
+                    }else if (response == 'not_taken') {
+                        username_state = true;
+                        $('#username').parent().removeClass();
+                        $('#username').parent().addClass("form_success");
+                        $('#username').siblings("span").text('Username available');
+                    }
+                    }
+                });
+            });	
+
+            $('#email').on('blur', function(){
+                var email = $('#email').val();
+                if (email == '') {
+                    email_state = false;
+                    return;
+                }
+                $.ajax({
+                url: 'reg_process.php',
+                type: 'post',
+                data: {
+                    'email_check' : 1,
+                    'email' : email,
+                },
+                success: function(response){
+                    if (response == 'taken' ) {
+                    email_state = false;
+                    $('#email').parent().removeClass();
+                    $('#email').parent().addClass("form_error");
+                    $('#email').siblings("span").text('Sorry... Email already taken');
+                    }else if (response == 'not_taken') {
+                    email_state = true;
+                    $('#email').parent().removeClass();
+                        $('#email').parent().addClass("form_success");
+                    $('#email').siblings("span").text('Email available');
+                    }
+                }
+                });
+            });
+
+            $('#register').click(function(e) {
+                
                 var valid = this.form.checkValidity();
-
                 if (valid) {
                     var firstname = $('#firstname').val();
                     var lastname = $('#lastname').val();
                     var email = $('#email').val();
                     var username = $('#username').val();
                     var password = $('#password').val();
+                    var confpass = $('#confpass').val();
 
-                    $.ajax ({
-                        type: 'POST',
-                        url: 'process.php',
-                        data: {firstname: firstname,lastname: lastname,email: email,username: username,password: password},
-                        dataType: "json",
-                        async: false,
-                        success: function(data) {
-                            Swal.fire({
-                            icon: 'success',
-                            title: 'User Registered',
-                            text: 'login to continue'
-                            })
-                            console.log('success');
-                        },
-                        error: function(data) {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text: 'Something went wrong!'
-                            })
-                            console.log('error');
-                        } 
-                    });
-                    // e.preventDefalult();
+                    var validateEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+                    var validatePassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+
+                    e.preventDefault();
+
+                    if (!email.match(validateEmail)) {
+                        swal({
+                            title: "Invalid email",
+                            text: "Recheck your email",
+                            icon: "error",
+                        });
+                    } else if (!password.match(validatePassword)) {
+                        swal({
+                            title: "Invalid Password",
+                            text: "Password must be between 6 to 20 characters and contain at least one numeric digit, one uppercase and one lowercase letter",
+                            con: "error",
+                        });
+                    } else if (password != confpass) {
+                        swal({
+                            title: "Passwords does not match",
+                            text: "Recheck your passwords",
+                            con: "error",
+                        });
+                    } else {
+                        $.ajax({
+                            type: 'POST',
+                            url: 'reg_process.php',
+                            data: {firstname: firstname,lastname: lastname,email: email,username: username,password
+                                : password},
+                            success: function(data) {
+                                swal({
+                                    title: "Registration Successful",
+                                    text: data,
+                                    icon: "success",
+                                });
+                                location.href = 'login.php';
+                            },
+                            error: function(data) {
+                                swal({
+                                    title: "An error occurred",
+                                    text: "Please check all the details",
+                                    icon: "error",
+                                });
+                            }
+                        });
+                    
+                    }
                 } else {
-                  
+                    swal({
+                        title: "An error occurred",
+                        text: "Please check all the details",
+                        icon: "error",
+                    });
                 }
             });
-            
-         });
+        });
     </script>
 </body>
 </html>
