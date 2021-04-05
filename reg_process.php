@@ -33,7 +33,6 @@
             $result = $stmtinsert->execute([$firstname, $lastname, $email, $username, $password]);
             if ($result) {
                 echo 'Successfully registered, login to continue';
-                header('Location: login.php');
             } else {
                 echo 'An error occurred';
             }

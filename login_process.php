@@ -6,7 +6,7 @@
         $username = $_POST['username'];
         $password = sha1($_POST['password']);
 
-        $sql = "SELECT * FROM User WHERE email = ? AND password =? LIMIT 1";
+        $sql = "SELECT * FROM User WHERE username = ? AND password = ?";
         $stmtselect = $db->prepare($sql);
         $result = $stmtselect->execute([$username, $password]);
         if ($result) {
@@ -14,7 +14,7 @@
             if($stmtselect->rowCount() > 0) {
                 echo 'You will be redirected';
             } else {
-                echo 'No user exist';
+                echo 'Invalid username or password';
             }
         }
 

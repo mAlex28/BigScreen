@@ -63,7 +63,7 @@
             <input type="password" id="password" placeholder="Password" name="password" required>
             <input type="password" id="confpass" placeholder="Confirm password" name="confpass" required>
             <input class="btn" type="submit" value="Register" name="register" id="register">
-            Have an account? <a href="login.php">Sign In</a> <br>
+            Have an account? <a href="login.php">Log In</a> <br>
         </form>
     </div>
 
@@ -101,13 +101,13 @@
                         swal({
                             title: "Invalid Password",
                             text: "Password must be between 6 to 20 characters and contain at least one numeric digit, one uppercase and one lowercase letter",
-                            con: "error",
+                            icon: "error",
                         });
                     } else if (password != confpass) {
                         swal({
                             title: "Passwords does not match",
                             text: "Recheck your passwords",
-                            con: "error",
+                            icon: "error",
                         });
                     } else {
                         $.ajax({
@@ -119,7 +119,7 @@
                                 swal({
                                     title: "mmm...",
                                     text: data,
-                                    icon: "success",
+                                    icon: "success"
                                 });
                             
                             },
@@ -127,7 +127,7 @@
                                 swal({
                                     title: "An error occurred",
                                     text: "Please check all the details",
-                                    icon: "error",
+                                    icon: "error"
                                 });
                             }
                         });

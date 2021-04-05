@@ -13,6 +13,11 @@
     <script src="https://kit.fontawesome.com/338bf2ef1a.js" crossorigin="anonymous"></script>
 </head>
 <body data-spy="scroll" data-target="#navbarResponsive">
+<div>
+    <?php
+   
+    ?> 
+    </div>
     <div class="container-fluid p-0">
         <!-- Navigation bar -->
         <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
@@ -67,31 +72,38 @@
     <script type="text/javascript">
         $(function() {
             $('#login').click(function(e) {
-
+                
                 var valid = this.form.checkValidity();
                 if (valid) {
                     var username = $('#username').val();
                     var password = $('#password').val();
-                
+             
                     e.preventDefault();
+
                     $.ajax({
-                            type: 'POST',
-                            url: 'login_process.php',
-                            data: {username: username,password: password},
-                            success: function(data) {
-                                // if($.trim(data) === "1") {
-                                //     setTimeout('window.location.href = "user_home.php"', 2000);
-                                // }  
-                            },
-                            error: function(data) {
-                                swal({
-                                    title: "An error occurred",
-                                    text: "Please check all the details",
-                                    icon: "error",
-                                });
-                            }
-                    }); 
-                }             
+                        type: 'POST',
+                        url: 'login_process.php',
+                        data: {username: username,password
+                            : password},
+                        success: function(data) {
+                            swal({
+                                title: "mmm...",
+                                text: data,
+                                icon: "success",
+                            });
+                            setTimeout('window.location.href = "user_home.php"', 2000);
+                        },
+                        error: function(data) {
+                            swal({
+                                title: "An error occurred",
+                                text: "Please check all the details",
+                                icon: "error",
+                            });
+                        }
+                    });
+                } else {
+                    
+                }
             });
         });
     </script>
