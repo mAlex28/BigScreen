@@ -37,6 +37,7 @@ body {
 /* Log in */
 .login {
     padding-bottom: 50%;
+    
 }
 .box {
     width: 400px;
@@ -96,23 +97,9 @@ body {
     background: #2ecc71;
 }
 
-/* Footer */
-footer {
-    font-size: 10px;
-    text-align: justify;
-}
-
-footer .container .row h5 {
-    font-size: 15px;
-}
-
-footer .container .row .social a{
-    color: white;
-    size: 10px;
-}
-
+/* 
 .fab:hover {
     opacity: 0.7;
     color: #bec0bf;
 }
-
+ */

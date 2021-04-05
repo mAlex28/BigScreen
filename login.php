@@ -1,7 +1,6 @@
 <?php
-
+    require_once('config.php');
 ?>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -48,49 +47,53 @@
 
     <!-- Login -->
     <div class="login">
-        <form action="" method="POST" class="box">
+        <form action="login.php" method="POST" class="box">
             <h1>Sign In</h1>
-            <input type="text" placeholder="Username" name="name">
-            <input type="password" placeholder="Password" name="password">
-            <input class="btn" type="submit" value="Sign in">
+            <input type="text" id="username" placeholder="Username" name="username" required>
+            <input type="password" id="password" placeholder="Password" name="password" required>
+            <input type="submit" id="login"  value="Login" name="login">
             Don't have an account? <a href="register.php">Register</a> <br>
             <a href="forgot_password.php">Forgot Password</a>
         </form>
     </div>
     
-        
-
-    <!-- Footer -->
-    <footer class="text-white" style="background-color:#141414e0;">
-        <div class="container p-4">
-            <div class="row">
-                <div class="col-lg-7 col-md-12 mb-4 mb-md-0">
-                     <!-- About -->
-                    <h5 class="text-uppercase">About</h5>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt distinctio earum repellat <br> 
-                        quaerat voluptatibus placeat nam, <br>
-                        commodi optio pariatur est quia magnam eum harum corrupti <br>
-                        dicta,  aliquam sequi voluptate quas.
-                    </p>
-                </div>
-                <div class="social col-lg-5 col-md-12 mb-4 mb-md-0">
-                    <!-- Social Media -->
-                    <h5 class="text-uppercase">Follow Us</h5>
-                    <a href="https://www.facebook.com/" class="fab fa-facebook-square fa-2x pr-2 text-decoration-none" target="blank"></a>
-                    <a href="https://www.twitter.com/" class="fab fa-twitter fa-2x pr-2 text-decoration-none" target="blank"></a>
-                    <a href="https://www.instagram.com/" class="fab fa-instagram fa-2x pr-2 text-decoration-none" target="blank"></a>
-                </div>
-            </div>
-        </div>
-        <div class="text-center p-3" style="background-color: rgb(253, 6, 6)">
-        © 2020 Copyright:<a class="text-white" href="#">BigScreen.com</a>
-        </div>
-    </footer>
-
+    
     <!-- Script files -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('#login').click(function(e) {
+
+                var valid = this.form.checkValidity();
+                if (valid) {
+                    var username = $('#username').val();
+                    var password = $('#password').val();
+                
+                    e.preventDefault();
+                    $.ajax({
+                            type: 'POST',
+                            url: 'login_process.php',
+                            data: {username: username,password: password},
+                            success: function(data) {
+                                // if($.trim(data) === "1") {
+                                //     setTimeout('window.location.href = "user_home.php"', 2000);
+                                // }  
+                            },
+                            error: function(data) {
+                                swal({
+                                    title: "An error occurred",
+                                    text: "Please check all the details",
+                                    icon: "error",
+                                });
+                            }
+                    }); 
+                }             
+            });
+        });
+    </script>
 </body>
 </html>

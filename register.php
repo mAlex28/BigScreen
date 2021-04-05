@@ -16,8 +16,6 @@
 <body data-spy="scroll" data-target="#navbarResponsive">
     <div>
     <?php
-        
-
    
     ?> 
     </div>
@@ -77,67 +75,6 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">
         $(function() {
-            var username_state = false;
-            var email_state = false;
-
-            $('#username').on('blur', function(){
-                var username = $('#username').val();
-                if (username == '') {
-                    username_state = false;
-                    return;
-                }
-                $.ajax({
-                    url: 'reg_process.php',
-                    type: 'post',
-                    data: {
-                        'username_check' : 1,
-                        'username' : username,
-                    },
-                    success: function(response){
-                    if (response == 'taken' ) {
-                        username_state = false;
-                        $('#username').parent().removeClass();
-                        $('#username').parent().addClass("form_error");
-                        $('#username').siblings("span").text('Sorry... Username already taken');
-                    }else if (response == 'not_taken') {
-                        username_state = true;
-                        $('#username').parent().removeClass();
-                        $('#username').parent().addClass("form_success");
-                        $('#username').siblings("span").text('Username available');
-                    }
-                    }
-                });
-            });	
-
-            $('#email').on('blur', function(){
-                var email = $('#email').val();
-                if (email == '') {
-                    email_state = false;
-                    return;
-                }
-                $.ajax({
-                url: 'reg_process.php',
-                type: 'post',
-                data: {
-                    'email_check' : 1,
-                    'email' : email,
-                },
-                success: function(response){
-                    if (response == 'taken' ) {
-                    email_state = false;
-                    $('#email').parent().removeClass();
-                    $('#email').parent().addClass("form_error");
-                    $('#email').siblings("span").text('Sorry... Email already taken');
-                    }else if (response == 'not_taken') {
-                    email_state = true;
-                    $('#email').parent().removeClass();
-                        $('#email').parent().addClass("form_success");
-                    $('#email').siblings("span").text('Email available');
-                    }
-                }
-                });
-            });
-
             $('#register').click(function(e) {
                 
                 var valid = this.form.checkValidity();
@@ -180,11 +117,11 @@
                                 : password},
                             success: function(data) {
                                 swal({
-                                    title: "Registration Successful",
+                                    title: "mmm...",
                                     text: data,
                                     icon: "success",
                                 });
-                                location.href = 'login.php';
+                            
                             },
                             error: function(data) {
                                 swal({
@@ -197,11 +134,7 @@
                     
                     }
                 } else {
-                    swal({
-                        title: "An error occurred",
-                        text: "Please check all the details",
-                        icon: "error",
-                    });
+                    
                 }
             });
         });
