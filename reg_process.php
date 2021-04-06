@@ -32,7 +32,7 @@
             $stmtinsert = $db->prepare($sql);
             $result = $stmtinsert->execute([$firstname, $lastname, $email, $username, $password]);
             if ($result) {
-                echo 'Successfully registered, login to continue';
+                echo  'Registration successsfull';
             } else {
                 echo 'An error occurred';
             }
