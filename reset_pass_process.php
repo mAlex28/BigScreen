@@ -35,7 +35,7 @@
             $stmt->execute([$user['id'], $hash, date("Y-m-d H:i:s")]);
         
             // SEND EMAIL
-            $from = "admin <alexthegeek2001@gmail.com>";
+            $from = "alexthegeek2001@gmail.com";
             $subject = "Password reset";
             $header = implode("\r\n", [
             "From: $from",

@@ -1,5 +1,7 @@
 <?php
-    require_once('config.php');
+    if (isset($_SESSION['userlogin'])) {
+        header("Location: user_home.php");
+    }
 ?>
 <html lang="en">
 <head>
@@ -13,11 +15,6 @@
     <script src="https://kit.fontawesome.com/338bf2ef1a.js" crossorigin="anonymous"></script>
 </head>
 <body data-spy="scroll" data-target="#navbarResponsive">
-<div>
-    <?php
-   
-    ?> 
-    </div>
     <div class="container-fluid p-0">
         <!-- Navigation bar -->
         <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
@@ -89,9 +86,12 @@
                             swal({
                                 title: "mmm...",
                                 text: data,
-                                icon: "success",
+                                // icon: "success",
                             });
-                            setTimeout('window.location.href = "user_home.php"', 2000);
+
+                            if ($.trim(data) === "You will be redirected") {
+                                setTimeout('window.location.href = "user_home.php"', 2000);
+                            }
                         },
                         error: function(data) {
                             swal({

@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require_once('config.php');
 ?>
 <?php
@@ -12,7 +13,9 @@
         if ($result) {
             $user = $stmtselect->fetch(PDO::FETCH_ASSOC);
             if($stmtselect->rowCount() > 0) {
+                $_SESSION['userlogin'] = $user;
                 echo 'You will be redirected';
+
             } else {
                 echo 'Invalid username or password';
             }
