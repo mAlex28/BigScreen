@@ -14,6 +14,7 @@
             $user = $stmtselect->fetch(PDO::FETCH_ASSOC);
             if($stmtselect->rowCount() > 0) {
                 $_SESSION['userlogin'] = $user;
+                $_SESSION['usersname'] = $username;
                 echo 'You will be redirected';
 
             } else {
