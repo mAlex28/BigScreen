@@ -120,6 +120,10 @@
                                     text: data,
                                     icon: "success"
                                 });
+
+                                if ($.trim(data) === "Registration successsfull") {
+                                setTimeout('window.location.href = "login.php"', 2000);
+                                }
                             
                             },
                             error: function(data) {
