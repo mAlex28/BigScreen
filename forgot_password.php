@@ -12,19 +12,14 @@
     <link rel="stylesheet" type="text/css" href="css/forgotpassword.css">
     <script src="https://kit.fontawesome.com/338bf2ef1a.js" crossorigin="anonymous"></script>
 </head>
-<body data-spy="scroll" data-target="#navbarResponsive">
-<div>
-    <?php
-   
-    ?> 
-    </div>
-
+<body>
     <!-- Login -->
     <div class="forgotpassword">
         <form action="forgot_password.php" method="POST" class="box">
             <h1>Reset Password</h1>
-            <input type="email" id="email" placeholder="Enter your email address" name="email" required>
-            <input type="submit" id="recover"  value="Send Mail" name="recover">
+            <input type="email" id="email" placeholder="Email address" name="email" required>
+            <input type="password" id="password" placeholder="New Password" name="password" required>
+            <input type="submit" id="recover"  value="Reset" name="recover">
             Have an account? <a href="login.php">Log In</a> <br>
         </form>
     </div>
@@ -43,28 +38,44 @@
                 var valid = this.form.checkValidity();
                 if (valid) {
                     var email = $('#email').val();
+                    var password = $('#password').val();
+
+                    var validatePassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
              
                     e.preventDefault();
 
-                    $.ajax({
-                        type: 'POST',
-                        url: 'reset_pass_process.php',
-                        data: {email: email},
-                        success: function(data) {
-                            swal({
-                                // title: "Mail Sent",
-                                text: data,
-                                icon: "success",
-                            });
-                        },
-                        error: function(data) {
-                            swal({
-                                title: "An error occurred",
-                                text: "Please check all the details",
-                                icon: "error",
-                            });
-                        }
-                    });
+                    if (!password.match(validatePassword)) {
+                        swal({
+                            title: "Invalid Password",
+                            text: "Password must be between 6 to 20 characters and contain at least one numeric digit, one uppercase and one lowercase letter",
+                            icon: "error",
+                        });
+                    } else {
+                        $.ajax({
+                            type: 'POST',
+                            url: 'reset_pass_process.php',
+                            data: {email: email, password: password},
+                            success: function(data) {
+                                swal({
+                                    // title: data,
+                                    text: data,
+                                    // icon: "success",
+                                });
+
+                                if ($.trim(data) === "Password reset successfull") {
+                                    setTimeout('window.location.href = "login.php"', 2000);
+                                }
+                            
+                            },
+                            error: function(data) {
+                                swal({
+                                    title: "An error occurred",
+                                    text: "Please check all the details",
+                                    icon: "error",
+                                });
+                            }
+                        });
+                    }
                 } else {
                     
                 }

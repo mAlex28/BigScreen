@@ -4,53 +4,25 @@
 <?php
     if (isset($_POST)) {
         $email = $_POST['email'];
+        $password = sha1($_POST['password']);
 
         // check if the user is valid
-        $stmt = $db->prepare("SELECT * FROM User WHERE email = ?");
-        $stmt->execute([$email]);
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        $result = is_array($user)
-                ? "" 
-                :$email . " is not registered." ;
+        $stmt_check = $db->prepare("SELECT * FROM User WHERE email=:email");
+        $stmt_check->bindValue(':email', $email, PDO::PARAM_STR);
+        $stmt_check->execute();
+        $count = $stmt_check->fetchColumn();
 
-        // check the preveious request - prevent spam
-        if ($result == "") {
-            $stmt = $db->prepare("SELECT * FROM `password_reset` WHERE `user_id`=?");
-            $stmt->execute([$user['id']]);
-            $request = $stmt->fetch(PDO::FETCH_ASSOC);
-            $now = strtotime("now");
-            if (is_array($request)) {
-                $expire = strtotime($request['reset_time']) + $prvalid;
-                if ($now < $expire) { $result = "Please try again later"; }
+        if($count <= 0){
+            echo 'User does not exist';      
+        } else {
+            $stmt = $db->prepare("UPDATE User SET password = ? WHERE email = ?");
+            $result = $stmt->execute([$password, $email]);
+            if ($result) {
+                echo  'Password reset successfull. Please re-login';
+            } else {
+                echo 'An error occurred';
             }
-        }
-
-        // create new reset request
-        if ($result == "") {
-            // RANDOM HASH
-            $hash = md5($user['email'] . $now);
-        
-            // DATABASE ENTRY
-            $stmt = $db->prepare("REPLACE INTO `password_reset` VALUES (?,?,?)");
-            $stmt->execute([$user['id'], $hash, date("Y-m-d H:i:s")]);
-        
-            // SEND EMAIL
-            $from = "alexthegeek2001@gmail.com";
-            $subject = "Password reset";
-            $header = implode("\r\n", [
-            "From: $from",
-            "MIME-Version: 1.0",
-            "Content-type: text/html; charset=utf-8"
-            ]);
-            $link = "http://localhost/reset_confirm.php?i=".$user['id']."&h=".$hash;
-            $message = "<a href='$link'>Click here to reset password</a>";
-            if (!@mail($user['email'], $subject, $message, $header)) {
-                $result = "Failed to send email!";
-            }
-        }
-
-        if ($result=="") { $result = "Email has been sent - Please click on the link in the email to confirm."; }
-        echo "$result";
+        }      
 
     } else {
         echo 'No data processed';
