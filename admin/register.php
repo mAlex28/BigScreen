@@ -1,15 +1,16 @@
 <?php
+    session_start();
     include('includes/header.php');
     include('includes/navbar.php');
 ?>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="addadminprofile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Add admin data</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="submit" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -39,8 +40,8 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" name="registerBtn" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" name="registerBtn" class="btn btn-primary">Save</button>
             </div>
         </form>
     </div>
@@ -51,32 +52,76 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Admin Profile
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addadminprofile">
+            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#addadminprofile">
                 Add Admin Profile
             </button>
             </h6>
         </div>
 
         <div class="card-body">
+
+        <?php
+            if(isset($_SESSION['success']) && $_SESSION['success'] != '') {
+                echo '<h2>'.$_SESSION['success'].' </h2>' ;
+                unset($_SESSION['success']);
+            }
+
+            if(isset($_SESSION['status']) && $_SESSION['status'] != '') {
+                echo '<h2>'.$_SESSION['status'].' </h2>' ;
+                unset($_SESSION['status']);
+            }
+        ?>    
+
             <div class="table-responsive">
+
+            <?php
+                $con = mysqli_connect("localhost", "root", "", "Big_Screen");
+                $query = "SELECT * FROM Admin";
+                $query_run = mysqli_query($con, $query);
+            ?>
+
                 <table class="table table-borded" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Position</th>
-                            <th>Age</th>
-                            <th>Startdate</th>
-                            <th>Salary</th>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Password</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+
                         </tr>
                     </thead>
                     <tbody>
+
+                    <?php
+                        if(mysqli_num_rows($query_run) > 0) {
+                            while($row = mysqli_fetch_assoc($query_run)) {
+                                ?>
+
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><?php  echo $row['id'];  ?></td>
+                            <td><?php  echo $row['username'];  ?></td>
+                            <td><?php  echo $row['email'];  ?></td>
+                            <td><?php  echo $row['password'];  ?></td>
+                            <td>
+                                <form action="editAdmin.php" method="POST"> 
+                                    <input type="hidden" name="edit_id" value="<?php  echo $row['id'];  ?>">
+                                    <button type="submit" name="editBtn" class="btn btn-success">Edit</button>
+                                </form>
+                            </td>
+                            <td>
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </td>
+
                         </tr>
+
+                        <?php
+                            }
+                        } else {
+                            echo "No record found";
+                        }
+                     ?>
                     </tbody>
                 </table>
             </div>
