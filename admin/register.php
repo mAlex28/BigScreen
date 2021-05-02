@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    include('security.php');
     include('includes/header.php');
     include('includes/navbar.php');
 ?>
@@ -111,7 +111,10 @@
                                 </form>
                             </td>
                             <td>
-                                <button type="submit" class="btn btn-danger">Delete</button>
+                                <form action="code.php" method="POST">
+                                <input type="hidden" name="delete_id" value="<?php  echo $row['id'];  ?>">
+                                <button type="submit" name="deleteBtn" class="btn btn-danger">Delete</button>
+                                </form>
                             </td>
 
                         </tr>

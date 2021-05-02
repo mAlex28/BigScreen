@@ -1,6 +1,6 @@
 <?php
-
-    session_start();
+  
+  include('security.php');
     $con = mysqli_connect("localhost", "root", "", "Big_Screen");
 
     if (isset($_POST['registerBtn'])) {
@@ -47,6 +47,21 @@
         }
     }
 
-   
+   if (isset($_POST['deleteBtn'])) {
+    $id = $_POST['delete_id'];
+
+    $query = "DELETE FROM admin WHERE id = '$id'";
+    $query_run = mysqli_query($con, $query);
+
+    if ($query_run) {
+        $_SESSION['success'] = "Data deleted";
+        header('Location: register.php');
+    } else {
+        $_SESSION['status'] = "Unable to delete data";
+        header('Location: register.php');
+    }
+
+   }
+
 
 ?>
