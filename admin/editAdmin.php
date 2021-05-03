@@ -17,7 +17,7 @@
             if (isset($_POST['editBtn'])) {
                 $id = $_POST['edit_id'];
                 
-                $query = "SELECT * FROM admin where id = '$id' ";
+                $query = "SELECT * FROM users where id = '$id' ";
                 $query_run = mysqli_query($con, $query);
 
                 foreach($query_run as $row) {

@@ -20,13 +20,10 @@ include('includes/header.php');
                                 <h1 class="h4 text-gray-900 mb-4">Admin Login</h1>
 
                                 <?php
-
                                     if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
                                         echo '<div class="alert alert-danger" role="alert">'.$_SESSION['status'].'</div>';
                                         unset($_SESSION['status']);
                                     }
-
-
                                 ?>
                             </div>
                             <form class="user" method="POST" action="logincode.php">

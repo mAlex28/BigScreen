@@ -30,7 +30,7 @@ include('includes/navbar.php');
                             <?php
                                 require 'dbconfig.php';
 
-                                $query = "SELECT id FROM admin ORDER BY id";
+                                $query = "SELECT id FROM users ORDER BY id";
                                 $query_run = mysqli_query($con, $query);
 
                                 $row = mysqli_num_rows($query_run);

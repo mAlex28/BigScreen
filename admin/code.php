@@ -8,18 +8,19 @@
         $email = $_POST['email'];
         $password = $_POST['password'];
         $confpassword = $_POST['confirmpassword'];
+        $userRole = $_POST['userRole'];
 
         if ($password === $confpassword) {
-            $query = "INSERT INTO admin (username, email, password) VALUES ('$username', '$email', '$password')";
+            $query = "INSERT INTO users (username, email, password, userRole) VALUES ('$username', '$email', '$password', '$userRole')";
             $query_run = mysqli_query($con, $query);
     
             if ($query_run) {
                 // echo "Saved";
-                $_SESSION['success'] = "Admin Profile Added";
+                $_SESSION['success'] = "<div class='alert alert-primary' role='alert'>Admin Profile Added</div>";
                 header('Location: register.php');
             } else {
-                // echo "Not saved";
-                $_SESSION['status'] = "Admin Profile Not Added";
+                // echo "Not saved"
+                $_SESSION['status'] = "<div class='alert alert-danger' role='alert'>Admin Profile Not Added</div>";
                 header('Location: register.php');
             }
 
@@ -35,7 +36,7 @@
         $email = $_POST['edit_email'];
         $password = $_POST['edit_password'];
 
-        $query = "UPDATE admin SET username = '$username', email = '$email', password = '$password' WHERE id = '$id' ";
+        $query = "UPDATE users SET username = '$username', email = '$email', password = '$password' WHERE id = '$id' ";
         $query_run = mysqli_query($con, $query);
 
         if ($query_run) {
@@ -50,15 +51,31 @@
    if (isset($_POST['deleteBtn'])) {
     $id = $_POST['delete_id'];
 
-    $query = "DELETE FROM admin WHERE id = '$id'";
+    $query = "DELETE FROM users WHERE id = '$id'";
     $query_run = mysqli_query($con, $query);
 
     if ($query_run) {
-        $_SESSION['success'] = "Data deleted";
+        $_SESSION['success'] = "<div class='alert alert-primary' role='alert'>Data deleted</div>";
         header('Location: register.php');
     } else {
-        $_SESSION['status'] = "Unable to delete data";
+        $_SESSION['status'] = "<div class='alert alert-danger' role='alert'>Unable to delete data</div>";
         header('Location: register.php');
+    }
+
+   }
+
+   if (isset($_POST['deleteBtnU'])) {
+    $id = $_POST['delete_id'];
+
+    $query = "DELETE FROM users WHERE id = '$id'";
+    $query_run = mysqli_query($con, $query);
+
+    if ($query_run) {
+        $_SESSION['success'] = "<div class='alert alert-primary' role='alert'>Data deleted</div>";
+        header('Location: users.php');
+    } else {
+        $_SESSION['status'] = "<div class='alert alert-danger' role='alert'>Unable to delete data</div>";
+        header('Location: users.php');
     }
 
    }
