@@ -24,7 +24,7 @@ include('includes/navbar.php');
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Total Admins</div>
+                                Total Users</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                             
                             <?php
@@ -40,7 +40,7 @@ include('includes/navbar.php');
                             </div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                            <i class="fas fa-users fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
@@ -54,11 +54,11 @@ include('includes/navbar.php');
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                Earnings (Annual)</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                Total movies</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">000</div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                            <i class="fas fa-film fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
