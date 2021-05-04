@@ -1,5 +1,5 @@
 <?php
-    session_start();
+include('security.php');
     include('includes/header.php');
     include('includes/navbar.php');
 ?>
@@ -13,7 +13,6 @@
 
         <div class="card-body">
         <?php
-          $con = mysqli_connect("localhost", "root", "", "Big_Screen");
             if (isset($_POST['editBtn'])) {
                 $id = $_POST['edit_id'];
                 

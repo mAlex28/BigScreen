@@ -28,12 +28,12 @@
             <div class="table-responsive">
 
             <?php
-                $con = mysqli_connect("localhost", "root", "", "Big_Screen");
+              
                 $query = "SELECT * FROM users";
                 $query_run = mysqli_query($con, $query);
             ?>
 
-                <table class="table table-borded" id="dataTable" width="100%" cellspacing="0" >
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -44,28 +44,31 @@
 
                         </tr>
                     </thead>
+                    <tfoot>
+                        <tr>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Type</th>
+                            <th>Delete</th>
+                        </tr>
+                    </tfoot>
                     <tbody>
-
                     <?php
                         if(mysqli_num_rows($query_run) > 0) {
                             while($row = mysqli_fetch_assoc($query_run)) {
-                                ?>
-
+                         ?>
                         <tr>
                             <td><?php  echo $row['id'];  ?></td>
                             <td><?php  echo $row['username'];  ?></td>
                             <td><?php  echo $row['email'];  ?></td>
                             <td><?php  
-                                $role = $row['userRole'];
-                              
+                                $role = $row['userRole'];                        
                                 if ($role == 1) {
                                     echo 'Admin';  
-
                                 } else {
                                     echo 'User';
                                 }
-
-
                             ?></td>
                             <td>
                                 <form action="code.php" method="POST">
@@ -73,9 +76,7 @@
                                 <button type="submit" name="deleteBtnU" class="btn btn-danger">Delete</button>
                                 </form>
                             </td>
-
                         </tr>
-
                         <?php
                             }
                         } else {

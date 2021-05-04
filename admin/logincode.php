@@ -1,7 +1,6 @@
 <?php
 
 include('security.php');
-include('dbconfig.php');
 
 if (isset($_POST['loginBtn'])) {
  $emailLogin = $_POST['email'];

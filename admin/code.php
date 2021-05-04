@@ -1,8 +1,7 @@
 <?php
   
   include('security.php');
-    $con = mysqli_connect("localhost", "root", "", "Big_Screen");
-
+   
     if (isset($_POST['registerBtn'])) {
         $username = $_POST['username'];
         $email = $_POST['email'];

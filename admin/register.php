@@ -82,7 +82,7 @@
                 $query_run = mysqli_query($con, $query);
             ?>
 
-                <table class="table table-borded" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -91,32 +91,37 @@
                             <th>Type</th>
                             <th>Edit</th>
                             <th>Delete</th>
-
                         </tr>
                     </thead>
+                    <tfoot>
+                    <tr>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Type</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </tfoot>
                     <tbody>
 
                     <?php
                         if(mysqli_num_rows($query_run) > 0) {
                             while($row = mysqli_fetch_assoc($query_run)) {
                                 ?>
-
                         <tr>
                             <td><?php  echo $row['id'];  ?></td>
                             <td><?php  echo $row['username'];  ?></td>
                             <td><?php  echo $row['email'];  ?></td>
                             <td><?php  
-                                $role = $row['userRole'];
-                              
+                                $role = $row['userRole'];                           
                                 if ($role == 1) {
                                     echo 'Admin';  
-
                                 } else {
                                     echo 'User';
                                 }
-
-
-                            ?></td>
+                                ?>
+                            </td>
                             <td>
                                 <form action="editAdmin.php" method="POST"> 
                                     <input type="hidden" name="edit_id" value="<?php  echo $row['id'];  ?>">
@@ -129,15 +134,13 @@
                                 <button type="submit" name="deleteBtn" class="btn btn-danger">Delete</button>
                                 </form>
                             </td>
-
                         </tr>
-
                         <?php
                             }
                         } else {
                             echo "No record found";
                         }
-                     ?>
+                        ?>
                     </tbody>
                 </table>
             </div>
