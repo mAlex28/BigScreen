@@ -28,8 +28,6 @@ include('includes/navbar.php');
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                             
                             <?php
-                                require 'dbconfig.php';
-
                                 $query = "SELECT id FROM users ORDER BY id";
                                 $query_run = mysqli_query($con, $query);
 

@@ -1,7 +1,5 @@
 <?php
-
 include('security.php');
-$con = mysqli_connect("localhost", "root", "", "Big_Screen");
 
 if (isset($_POST['addNewsBtn'])) {
     $title = $_POST['title'];

@@ -77,7 +77,7 @@
             <div class="table-responsive">
 
             <?php
-                $con = mysqli_connect("localhost", "root", "", "Big_Screen");
+
                 $query = "SELECT * FROM users WHERE UserRole = 1";
                 $query_run = mysqli_query($con, $query);
             ?>
