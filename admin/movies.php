@@ -45,7 +45,7 @@ include('includes/navbar.php');
                 
                 <div class="form-group">
                     <label>Description</label>
-                    <textarea type="text" name="moviedescription" class="form-control" placeholder="Enter Descripton" required></textarea>
+                    <textarea type="text" name="moviedescription" class="form-control" placeholder="Enter Descripton"></textarea>
                 </div>
 
                 <div class="form-group">
