@@ -20,17 +20,17 @@ include('includes/navbar.php');
 
                 <div class="form-group">
                     <label>Name</label>
-                    <input type="text" name="moviename" class="form-control" placeholder="Enter Movie Name" required>
+                    <input type="text" name="moviename" class="form-control" placeholder="Enter Movie Name">
                 </div>
 
                 <div class="form-group">
                     <label>Year</label>
-                    <input type="text" name="movieyear" class="form-control" placeholder="Enter Year" required>
+                    <input type="text" name="movieyear" class="form-control" placeholder="Enter Year">
                 </div>
 
                 <div class="form-group">
                     <label>IMDB</label>
-                    <input type="text" name="imdb" class="form-control" placeholder="Enter IMDB" required>
+                    <input type="text" name="imdb" class="form-control" placeholder="Enter IMDB">
                 </div>
 
                 <div class="form-group">
@@ -40,17 +40,17 @@ include('includes/navbar.php');
 
                 <div class="form-group">
                     <label>Category</label>
-                    <input type="text" name="category" class="form-control" placeholder="Enter Category/Genre" required>
+                    <input type="text" name="category" class="form-control" placeholder="Enter Category/Genre">
                 </div>
                 
                 <div class="form-group">
                     <label>Description</label>
-                    <textarea type="text" name="moviedescription" class="form-control" placeholder="Enter Descripton"></textarea>
+                    <textarea name="description" id="description" class="form-control" cols="30" rows="5"></textarea>
                 </div>
 
                 <div class="form-group">
                     <label>Upload Poster</label>
-                    <input type="file" name="movieposter" id="movieposter" class="form-control" required>
+                    <input type="file" name="movieposter" id="movieposter" class="form-control">
                 </div>
             </div>
 
@@ -72,12 +72,16 @@ include('includes/navbar.php');
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Movies 
             <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#addadminprofile">
                 Add Movie
             </button>
-            </h6>
+            <form action="moviecode.php" method="post">
+            <button type="submit" class="btn btn-danger" name="deleteMultipleData">
+                Delete Multiple Movies
+            </button>
+            </form>
         </div>
+        
         <div class="card-body">
         <?php
             if(isset($_SESSION['success']) && $_SESSION['success'] != '') {
@@ -100,6 +104,7 @@ include('includes/navbar.php');
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
+                            <th>Check</th>
                             <th>ID</th>
                             <th>Name</th>
                             <th>Year</th>
@@ -114,6 +119,7 @@ include('includes/navbar.php');
                     </thead>
                     <tfoot>
                         <tr>
+                            <th>Check</th>
                             <th>ID</th>
                             <th>Name</th>
                             <th>Year</th>
@@ -132,6 +138,10 @@ include('includes/navbar.php');
                             while($row = mysqli_fetch_assoc($query_run)) {
                                 ?>
                         <tr>
+                            <td>
+                            
+                                <input type="checkbox" onclick="toggleCheckbox(this)" value="<?php  echo $row['mid'];  ?>"  <?php echo $row['visible'] == 1 ? "checked" : "" ?>>
+                            </td>
                             <td><?php  echo $row['mid'];  ?></td>
                             <td><?php  echo $row['mname'];  ?></td>
                             <td><?php  echo $row['myear'];  ?></td>
@@ -149,6 +159,7 @@ include('includes/navbar.php');
                             <td>
                                 <form action="moviecode.php" method="POST">
                                 <input type="hidden" name="delete_id" value="<?php  echo $row['mid'];  ?>">
+                                <input type="hidden" name="delete_poster" value="<?php  echo $row['poster'];  ?>">
                                 <button type="submit" name="deleteBtn" class="btn btn-danger">Delete</button>
                                 </form>
                             </td>
@@ -171,5 +182,36 @@ include('includes/navbar.php');
 
 <?php
 include('includes/script.php');
-include('includes/footer.php')
+?>
+
+<script>
+    function toggleCheckbox(ckBox) {
+        var id = $(ckBox).attr("value");
+
+        if ($(ckBox).prop("checked") == true) {
+            var visible = 1;
+        } else {
+            var visible = 0;
+        }
+
+        var data = {
+            "search_data" : 1,
+            "mid": id,
+            "visible": visible
+        };
+
+        $.ajax({
+            type: "post",
+            url: "moviecode.php",
+            data: data,
+            success: function (response) {
+                // alert("Data Checked/Unchecked")
+            }
+        });
+    }
+
+</script>
+
+<?
+include('includes/footer.php');
 ?>
