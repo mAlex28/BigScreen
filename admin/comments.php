@@ -19,12 +19,9 @@ include('includes/navbar.php');
                 <div class="modal-body">
 
                 <?php
-                    $user = "SELECT * FROM users";
-                    
-
+                    $user = "SELECT * FROM users";      
                     $user_run = mysqli_query($con, $user);
                  
-
                     if (mysqli_num_rows($user_run)) {
 
                     ?>
