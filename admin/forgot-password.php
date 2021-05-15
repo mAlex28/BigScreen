@@ -17,6 +17,14 @@ include('includes/header.php');
                 <div class="row">
                     <!-- <div class="col-lg-6 d-none d-lg-block bg-password-image"></div> -->
                     <div class="col-lg-12">
+
+        <?php
+
+            if(isset($_SESSION['status']) && $_SESSION['status'] != '') {
+                echo '<h2>'.$_SESSION['status'].' </h2>' ;
+                unset($_SESSION['status']);
+            }
+        ?>    
                         <div class="p-5">
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-2">Forgot Your Password?</h1>
@@ -27,7 +35,7 @@ include('includes/header.php');
                                 <div class="form-group">
                                     <input type="email" class="form-control form-control-user"
                                         id="exampleInputEmail" aria-describedby="emailHelp"
-                                        placeholder="Enter Email Address...">
+                                        placeholder="Enter Email Address..." name="email">
                                 </div>
                                 <button type="submit" name="resetBtn" class="btn btn-primary btn-user btn-block">Reset Password</button>
                             </form>

@@ -18,8 +18,6 @@ if (isset($_POST['addNewsBtn'])) {
         $_SESSION['status'] = "<div class='alert alert-danger' role='alert'>News Not Added</div>";
         header('Location: news.php');
     }
-
-
    }
 
    if (isset($_POST['updateBtn'])) {
