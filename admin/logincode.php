@@ -18,7 +18,7 @@ if (isset($_POST['loginBtn'])) {
  } else if ($usertype['userRole'] == 2) {
 
     $_SESSION['username'] = $emailLogin;
-    header('Location: ../user_home.php');
+    header('Location: ../joinus.php');
 
  } else {
 

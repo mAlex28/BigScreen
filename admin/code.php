@@ -1,5 +1,4 @@
 <?php
-  
   include('security.php');
    
     if (isset($_POST['registerBtn'])) {
