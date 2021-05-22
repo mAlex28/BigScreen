@@ -101,7 +101,7 @@ include('includes/navbar.php');
               $query = "SELECT * FROM movies";
               $query_run = mysqli_query($con, $query);
           ?>
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="2" >
                     <thead>
                         <tr>
                             <th>Check</th>
@@ -117,21 +117,7 @@ include('includes/navbar.php');
                             <th>Delete</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th>Check</th>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Year</th>
-                            <th>IMDB</th>
-                            <th>Ratings</th>
-                            <th>Category</th>
-                            <th>Description</th>
-                            <th>Poster</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
-                        </tr>
-                    </tfoot>
+                 
                     <tbody>
                     <?php
                         if(mysqli_num_rows($query_run) > 0) {
@@ -148,7 +134,21 @@ include('includes/navbar.php');
                             <td><?php  echo $row['imdb'];  ?></td>
                             <td><?php  echo $row['ratings'];  ?></td>
                             <td><?php  echo $row['category'];  ?></td>
-                            <td><?php  echo $row['description'];  ?></td>
+                            <td><?php  
+                                    // echo $row['description'];  
+                                    $stringsh = $row['description'];
+                                    $stringsh = strip_tags($stringsh);
+
+                                    if (strlen($stringsh) > 50) {
+                                        $stringCut = substr($stringsh, 0, 50);
+                                        $endPoint = strrpos($stringCut, ' ');
+
+                                        $stringsh = $endPoint? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
+                                        $stringsh .= '... <a href="">Read More</a>';
+                                    }
+                                    echo $stringsh;
+                                ?>
+                            </td>
                             <td><?php  echo '<img src="upload/'.$row['poster'].'"width="100px" height="100px" alt="image">'?></td>
                             <td>
                                 <form action="editMovie.php" method="POST"> 
@@ -171,6 +171,21 @@ include('includes/navbar.php');
                         }
                      ?>
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Check</th>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Year</th>
+                            <th>IMDB</th>
+                            <th>Ratings</th>
+                            <th>Category</th>
+                            <th>Description</th>
+                            <th>Poster</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>

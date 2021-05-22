@@ -26,8 +26,6 @@
     }
 
 
-
-
     if (isset($_POST['addMovieBtn'])) {
         $moviename = $_POST['moviename'];
         $year = $_POST['movieyear'];
@@ -51,7 +49,6 @@
                 $_SESSION['success'] = "<div class='alert alert-primary' role='alert'>Movie Added</div>";
                 header('Location: movies.php');
             } else {
-                // echo "Not saved"
                 $_SESSION['status'] = "<div class='alert alert-danger' role='alert'>Movie Not Added</div>";
                 header('Location: movies.php');
             }         
@@ -118,7 +115,7 @@
                 header('Location: movies.php');          
             }
         } else {
-            $_SESSION['status'] = "<div class='alert alert-primary' role='alert'>Movie not updated</div>";
+            $_SESSION['status'] = "<div class='alert alert-danger' role='alert'>Movie not updated</div>";
             header('Location: movies.php');
         }
     }
