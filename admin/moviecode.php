@@ -40,7 +40,7 @@
             $_SESSION['status'] = "<div class='alert alert-danger' role='alert'>Image already exists '.$store.'</div>";
             header('Location: movies.php');
         } else {
-            $query = "INSERT INTO movies (mname,myear,imdb,ratings,category,description,poster) VALUES ('$moviename', '$year', '$imdb', '$rating', '$category', '$description', '$poster')";
+            $query = ("INSERT INTO movies (mname,myear,imdb,ratings,category,description,poster) VALUES ('$moviename', '$year', '$imdb', '$rating', '$category', '$description', '$poster')");
             $query_run = mysqli_query($con, $query);
             
             if ($query_run) {
