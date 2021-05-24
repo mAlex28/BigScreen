@@ -20,27 +20,27 @@ include('includes/navbar.php');
 
                 <div class="form-group">
                     <label>Name</label>
-                    <input type="text" name="moviename" class="form-control" placeholder="Enter Movie Name">
+                    <input type="text" name="moviename" class="form-control" placeholder="Enter Movie Name" required> 
                 </div>
 
                 <div class="form-group">
                     <label>Year</label>
-                    <input type="text" name="movieyear" class="form-control" placeholder="Enter Year">
+                    <input type="text" name="movieyear" class="form-control" placeholder="Enter Year" required>
                 </div>
 
                 <div class="form-group">
                     <label>IMDB</label>
-                    <input type="text" name="imdb" class="form-control" placeholder="Enter IMDB">
+                    <input type="text" name="imdb" class="form-control" placeholder="Enter IMDB" required>
                 </div>
 
                 <div class="form-group">
                     <label>Ratings</label>
-                    <input type="text" name="rating" class="form-control" placeholder="Enter Ratings">
+                    <input type="text" name="rating" class="form-control" placeholder="Enter Ratings" required>
                 </div>
 
                 <div class="form-group">
                     <label>Category</label>
-                    <input type="text" name="category" class="form-control" placeholder="Enter Category/Genre">
+                    <input type="text" name="category" class="form-control" placeholder="Enter Category/Genre" required>
                 </div>
                 
                 <div class="form-group">
