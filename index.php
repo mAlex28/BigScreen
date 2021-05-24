@@ -159,45 +159,45 @@ include('dbconfig.php');
 						</div>
 						<div class="col-md-4">
 							<h2 class="section-title">June premiere</h2>
-							<p>Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+							<p>Upcoming movies for the next month</p>
 							<ul class="movie-schedule">
 								<li>
-									<div class="date">16/12</div>
-									<h2 class="entry-title"><a href="#">Perspiciatis unde omnis</a></h2>
+									<div class="date">04/06</div>
+									<h2 class="entry-title"><a href="#">The Conjuring</a></h2>
 								</li>
 								<li>
-									<div class="date">16/12</div>
-									<h2 class="entry-title"><a href="#">Perspiciatis unde omnis</a></h2>
+									<div class="date">11/06</div>
+									<h2 class="entry-title"><a href="#">The Misfits</a></h2>
 								</li>
 								<li>
-									<div class="date">16/12</div>
-									<h2 class="entry-title"><a href="#">Perspiciatis unde omnis</a></h2>
+									<div class="date">18/06</div>
+									<h2 class="entry-title"><a href="#">Peter Rabbit 2</a></h2>
 								</li>
 								<li>
-									<div class="date">16/12</div>
-									<h2 class="entry-title"><a href="#">Perspiciatis unde omnis</a></h2>
+									<div class="date">25/06</div>
+									<h2 class="entry-title"><a href="#">Fast & Furious 9</a></h2>
 								</li>
 							</ul> <!-- .movie-schedule -->
 						</div>
 						<div class="col-md-4">
 							<h2 class="section-title">July premiere</h2>
-							<p>Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+							<p>Movies that are set to release on July</p>
 							<ul class="movie-schedule">
 								<li>
-									<div class="date">16/12</div>
-									<h2 class="entry-title"><a href="#">Perspiciatis unde omnis</a></h2>
+									<div class="date">02/07</div>
+									<h2 class="entry-title"><a href="#">The Forever Purge</a></h2>
 								</li>
 								<li>
-									<div class="date">16/12</div>
-									<h2 class="entry-title"><a href="#">Perspiciatis unde omnis</a></h2>
+									<div class="date">02/07</div>
+									<h2 class="entry-title"><a href="#">Summer of Soul</a></h2>
 								</li>
 								<li>
-									<div class="date">16/12</div>
-									<h2 class="entry-title"><a href="#">Perspiciatis unde omnis</a></h2>
+									<div class="date">09/07</div>
+									<h2 class="entry-title"><a href="#">Black Widow</a></h2>
 								</li>
 								<li>
-									<div class="date">16/12</div>
-									<h2 class="entry-title"><a href="#">Perspiciatis unde omnis</a></h2>
+									<div class="date">14/07</div>
+									<h2 class="entry-title"><a href="#">Gunpowder Milkshake</a></h2>
 								</li>
 							</ul> <!-- .movie-schedule -->
 						</div>
