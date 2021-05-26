@@ -44,7 +44,7 @@ include('dbconfig.php');
 					<ul class="menu">
 						<li class="menu-item current-menu-item"><a href="index.php">Home</a></li>
 						<li class="menu-item"><a href="about.html">About</a></li>
-						<li class="menu-item"><a href="review.html">Movie reviews</a></li>
+						<li class="menu-item"><a href="review.php">Movie reviews</a></li>
 						<li class="menu-item"><a href="news.html">News</a></li>
 						<li class="menu-item"><a href="joinus.html">Join us</a></li>
 						<li class="menu-item"><a href="contact.html">Contact</a></li>
@@ -240,7 +240,7 @@ include('dbconfig.php');
 						<div class="widget">
 							<h3 class="widget-title">Join Us</h3>
 							<ul class="no-bullet">
-								<li><a href="#">Carrers</a></li>
+								<li><a href="#">Carriers</a></li>
 								<li><a href="#">Developers</a></li>
 								<li><a href="#">Reviewers</a></li>
 								<!-- <li><a href="#">Invenore veritae</a></li> -->
