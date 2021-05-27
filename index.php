@@ -43,11 +43,11 @@ include('dbconfig.php');
 					<button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
 					<ul class="menu">
 						<li class="menu-item current-menu-item"><a href="index.php">Home</a></li>
-						<li class="menu-item"><a href="about.html">About</a></li>
+						<li class="menu-item"><a href="about.php">About</a></li>
 						<li class="menu-item"><a href="review.php">Movie reviews</a></li>
-						<li class="menu-item"><a href="news.html">News</a></li>
-						<li class="menu-item"><a href="joinus.html">Join us</a></li>
-						<li class="menu-item"><a href="contact.html">Contact</a></li>
+						<li class="menu-item"><a href="news.php">News</a></li>
+						<li class="menu-item"><a href="joinus.php">Join us</a></li>
+						<li class="menu-item"><a href="contact.php">Contact</a></li>
 					</ul> <!-- .menu -->
 
 					<form action="#" class="search-form">

@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -28,7 +30,7 @@
 		<div id="site-content">
 			<header class="site-header">
 				<div class="container">
-					<a href="index.html" id="branding">
+					<a href="index.php" id="branding">
 						<img src="images/logo.png" alt="" class="logo">
 						<div class="logo-copy">
 							<h1 class="site-title">Company Name</h1>
@@ -39,11 +41,12 @@
 					<div class="main-navigation">
 						<button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
 						<ul class="menu">
-							<li class="menu-item"><a href="index.html">Home</a></li>
-							<li class="menu-item current-menu-item"><a href="about.html">About</a></li>
-							<li class="menu-item"><a href="review.html">Movie reviews</a></li>
-							<li class="menu-item"><a href="joinus.html">Join us</a></li>
-							<li class="menu-item"><a href="contact.html">Contact</a></li>
+							<li class="menu-item"><a href="index.php">Home</a></li>
+							<li class="menu-item current-menu-item"><a href="about.php">About</a></li>
+							<li class="menu-item"><a href="review.php">Movie reviews</a></li>
+						<li class="menu-item"><a href="news.php">News</a></li>
+							<li class="menu-item"><a href="joinus.php">Join us</a></li>
+							<li class="menu-item"><a href="contact.php">Contact</a></li>
 						</ul> <!-- .menu -->
 
 						<form action="#" class="search-form">
@@ -59,13 +62,13 @@
 				<div class="container">
 					<div class="page">
 						<div class="breadcrumbs">
-							<a href="index.html">Home</a>
+							<a href="index.php">Home</a>
 							<span>About us</span>
 						</div>
 
 						<div class="row">
 							<div class="col-md-4">
-								<figure><img src="dummy/figure.jpg" alt="figure image"></figure>
+								<figure><img src="dummy/figure.jpeg" alt="figure image"></figure>
 							</div>
 							<div class="col-md-8">
 								<p class="leading">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam.</p>
@@ -99,7 +102,7 @@
 
 							<div class="col-md-3">
 								<div class="team">
-									<figure class="team-image"><img src="dummy/person-1.jpg" alt=""></figure>
+									<figure class="team-image"><img src="dummy/person-1.jpeg" alt=""></figure>
 									<h2 class="team-name">Sarah Stuart</h2>
 									<small class="team-title">Co-founder</small>
 									<div class="social-links">
@@ -112,7 +115,7 @@
 							</div>
 							<div class="col-md-3">
 								<div class="team">
-									<figure class="team-image"><img src="dummy/person-2.jpg" alt=""></figure>
+									<figure class="team-image"><img src="dummy/person-2.jpeg" alt=""></figure>
 									<h2 class="team-name">John Doe</h2>
 									<small class="team-title">Managing Director</small>
 									<div class="social-links">
@@ -125,7 +128,7 @@
 							</div>
 							<div class="col-md-3">
 								<div class="team">
-									<figure class="team-image"><img src="dummy/person-3.jpg" alt=""></figure>
+									<figure class="team-image"><img src="dummy/person-3.jpeg" alt=""></figure>
 									<h2 class="team-name">Jessica Branson</h2>
 									<small class="team-title">Reviewer</small>
 									<div class="social-links">
@@ -138,9 +141,9 @@
 							</div>
 							<div class="col-md-3">
 								<div class="team">
-									<figure class="team-image"><img src="dummy/person-4.jpg" alt=""></figure>
-									<h2 class="team-name">Sarah Stuart</h2>
-									<small class="team-title">Consultant</small>
+									<figure class="team-image"><img src="dummy/person-4.jpeg" alt=""></figure>
+									<h2 class="team-name">Andrew Jack</h2>
+									<small class="team-title">Developer</small>
 									<div class="social-links">
 										<a href="" class="facebook"><i class="fa fa-facebook"></i></a>
 										<a href="" class="twitter"><i class="fa fa-twitter"></i></a>
