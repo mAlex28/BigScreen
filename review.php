@@ -84,29 +84,29 @@ include('dbconfig.php');
 						</select>
 					</div>
 
-					
+
 					<div class="movie-list">
-					<?php
-					$query = "SELECT * FROM movies";
-					$query_run = mysqli_query($con, $query);
-					if (mysqli_num_rows($query_run) > 0) {
-						while ($row = mysqli_fetch_assoc($query_run)) {
-					?>
-						<div class="movie">
-							<figure class="movie-poster"><?php echo '<img src="admin/upload/' . $row['poster'] . '" alt="image">' ?></figure>
-							<div class="movie-title"><a href="single.html"><?php echo $row['mname'] ?> (<?php echo $row['myear'] ?>)</a></div>
+						<?php
+						$query = "SELECT * FROM movies";
+						$query_run = mysqli_query($con, $query);
+						if (mysqli_num_rows($query_run) > 0) {
+							while ($row = mysqli_fetch_assoc($query_run)) {
+						?>
+								<div class="movie">
+									<figure class="movie-poster"><?php echo '<img src="admin/upload/' . $row['poster'] . '" alt="image">' ?></figure>
+									<div class="movie-title"><a href="single.php?movieid=<?php echo $row['mid'] ?>""><?php echo $row['mname'] ?> (<?php echo $row['myear'] ?>)</a></div>
 							<p>IMDB: <?php echo $row['imdb'] ?> </p>
 							<p>Category: <?php echo $row['category'] ?></p>
 						</div>
 						<?php
-										}
-									} else {
-										echo "No record found";
-									}
-									?>
+							}
+						} else {
+							echo "No record found";
+						}
+						?>
 					</div> <!-- .movie-list -->
 
-					<div class="pagination">
+					<div class=" pagination">
 						<a href="#" class="page-number prev"><i class="fa fa-angle-left"></i></a>
 						<span class="page-number current">1</span>
 						<a href="#" class="page-number">2</a>
@@ -118,6 +118,7 @@ include('dbconfig.php');
 				</div>
 			</div> <!-- .container -->
 		</main>
+
 		<footer class="site-footer">
 			<div class="container">
 				<div class="row">

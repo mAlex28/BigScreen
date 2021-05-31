@@ -27,9 +27,8 @@ include('dbconfig.php');
 </head>
 
 <body>
-<div id="site-content">
-
-<header class="site-header">
+	<div id="site-content">
+		<header class="site-header">
 			<div class="container">
 				<a href="index.php" id="branding">
 					<img src="images/logo.png" alt="" class="logo">
@@ -60,26 +59,38 @@ include('dbconfig.php');
 			</div>
 		</header>
 
-        <main class="main-content">
-        <div class="container">
+		<main class="main-content">
+			<div class="container">
 				<div class="page">
 					<div class="breadcrumbs">
 						<a href="index.php">Home</a>
 						<span>News</span>
 					</div>
 
-                    <div class="movie-list">
-			
-						<div class="movie">
-							<figure class="movie-poster"><img src="dummy/cmbyn.jpg" alt=""></figure>
-							<div class="movie-title"><a href="single.html"></a></div>
-							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium, nesciunt dolore quo placeat provident et optio expedita fuga accusantium aliquam!</p>
-						
-						</div>
-						
+					<div class="movie-list">
+						<?php
+
+						$query = "SELECT * FROM news";
+						$query_run = mysqli_query($con, $query);
+
+						if (mysqli_num_rows($query_run) > 0) {
+							while ($row = mysqli_fetch_assoc($query_run)) {
+
+						?>
+								<div class="movie">
+									<div class="movie-title"><a href="newsview.php?newsid=<?php echo $row['id'] ?>"><?php  echo $row['title'];  ?></a></div>
+									<p><?php  echo $row['description'];  ?></p>
+									<p><?php  echo $row['links'];  ?></p>
+								</div>
+						<?php
+							}
+						} else {
+							echo "No record found";
+						}
+						?>
 					</div> <!-- .movie-list -->
 
-                    <div class="pagination">
+					<div class="pagination">
 						<a href="#" class="page-number prev"><i class="fa fa-angle-left"></i></a>
 						<span class="page-number current">1</span>
 						<a href="#" class="page-number">2</a>
@@ -89,11 +100,11 @@ include('dbconfig.php');
 						<a href="#" class="page-number next"><i class="fa fa-angle-right"></i></a>
 					</div>
 
-            </div>
-        </div>
+				</div>
+			</div>
 
-        </main>
-        <footer class="site-footer">
+		</main>
+		<footer class="site-footer">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-2">
@@ -161,10 +172,11 @@ include('dbconfig.php');
 
 		</footer>
 
-</div>
-    <script src="js/jquery-1.11.1.min.js"></script>
+	</div>
+	<script src="js/jquery-1.11.1.min.js"></script>
 	<script src="js/plugins.js"></script>
 	<script src="js/app.js"></script>
 
 </body>
+
 </html>

@@ -571,22 +571,44 @@ ul.arrow li a:hover {
 
 .feature {
   margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .feature .feature-title {
   color: #ffaa3c;
   font-size: 30px;
   font-size: 2em;
-  margin: 0;
+  margin-top: 10%;
+  
 }
 .feature .feature-subtitle {
   font-size: 24px;
-  font-size: 1.6em;
+  font-size: 1em;
   margin: 0 0 30px;
   font-weight: 300;
   display: block;
 }
+
+.feature input {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 50px;
+  width: 100%;
+  outline: none;
+}
+
 .feature p {
   margin-bottom: 30px;
+}
+
+.feature .button {
+  margin-bottom: 20px;
+}
+
+.feature .link {
+  padding-top: 10px;
 }
 
 .map {
