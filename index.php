@@ -1,5 +1,6 @@
 <?php
-include('dbconfig.php');
+session_start();
+include('admin/database/dbconfig.php');
 ?>
 
 <!DOCTYPE html>
@@ -39,22 +40,56 @@ include('dbconfig.php');
 					</div>
 				</a> <!-- #branding -->
 
-				<div class="main-navigation">
-					<button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
-					<ul class="menu">
-						<li class="menu-item current-menu-item"><a href="index.php">Home</a></li>
-						<li class="menu-item"><a href="about.php">About</a></li>
-						<li class="menu-item"><a href="review.php">Movie reviews</a></li>
-						<li class="menu-item"><a href="news.php">News</a></li>
-						<li class="menu-item"><a href="joinus.php">Join us</a></li>
-						<li class="menu-item"><a href="contact.php">Contact</a></li>
-					</ul> <!-- .menu -->
+				<?php
+				if ($_SESSION['username']) { ?>
+					<div class="main-navigation">
+						<button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
+						<ul class="menu">
+							<li class="menu-item current-menu-item"><a href="index.php">Home</a></li>
+							<li class="menu-item"><a href="about.php">About</a></li>
+							<li class="menu-item"><a href="review.php">Movie reviews</a></li>
+							<li class="menu-item"><a href="news.php">News</a></li>
+							<li class="menu-item">
+								<div class="dropdown">
+									<a class="dropbtn"><?php echo $_SESSION['username']; ?>
+										<i class="fa fa-caret-down"></i>
+									</a>
+									<div class="dropdown-content">
+										<form action="logout.php" method="POST">
 
-					<form action="#" class="search-form">
-						<input type="text" placeholder="Search...">
-						<button><i class="fa fa-search"></i></button>
-					</form>
-				</div> <!-- .main-navigation -->
+											<button type="submit" name="logoutBtn">
+												<a href="#">Logout</a>
+											</button>
+										</form>
+										<a href="#">Profile</a>
+									</div>
+								</div>
+							</li>
+							<li class="menu-item"><a href="contact.php">Contact</a></li>
+						</ul> <!-- .menu -->
+						<form action="searchmovie.php" method="POST" class="search-form">
+							<input type="text" name="name" placeholder="Search...">
+							<button type="submit" name="searchBtn"><i class="fa fa-search"></i></button>
+						</form>
+					</div> <!-- .main-navigation -->
+
+				<?php } else { ?>
+					<div class="main-navigation">
+						<button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
+						<ul class="menu">
+							<li class="menu-item current-menu-item"><a href="index.php">Home</a></li>
+							<li class="menu-item"><a href="about.php">About</a></li>
+							<li class="menu-item"><a href="review.php">Movie reviews</a></li>
+							<li class="menu-item"><a href="news.php">News</a></li>
+							<li class="menu-item"><a href="joinus.php">Join Us</a></li>
+							<li class="menu-item"><a href="contact.php">Contact</a></li>
+						</ul> <!-- .menu -->
+						<form action="searchmovie.php" method="POST" class="search-form">
+							<input type="text" name="name" placeholder="Search...">
+							<button type="submit" name="searchBtn"><i class="fa fa-search"></i></button>
+						</form>
+					</div> <!-- .main-navigation -->
+				<?php } ?>
 
 				<div class="mobile-navigation"></div>
 			</div>
@@ -122,7 +157,7 @@ include('dbconfig.php');
 						?>
 								<div class="col-sm-6 col-md-3">
 									<div class="latest-movie">
-									<a href="#"><?php echo '<img src="admin/upload/' . $row['poster'] . '" alt="image">' ?></a>
+										<a href="#"><?php echo '<img src="admin/upload/' . $row['poster'] . '" alt="image">' ?></a>
 
 									</div>
 								</div>

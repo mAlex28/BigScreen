@@ -75,15 +75,18 @@ session_start();
 								</div>
 								<div class="col-md-4">
 									<div class="feature">
-										<h3 class="feature-title">Log In</h3>
-										<small class="feature-subtitle">Login to your account</small>
+										<h3 class="feature-title">Register</h3>
+										<small class="feature-subtitle">Don't have an account? Register Below</small>
 
-										<form action="admin/logincode.php" method="POST">
+										<form action="registerUser.php" method="POST">
+										<input name="username" type="text" class="username" placeholder="Enter username" required>
 											<input name="email" type="text" class="email" placeholder="Enter your email" required>
 											<input name="password" type="text" class="pass" placeholder="Enter your password" required>
-											<button name="loginBtn" type="submit" class="button">Log In</button>
+											<input name="confirmpassword" type="text" class="password" placeholder="Confirm password" required>
+											<input type="hidden" name="userRole" value="2">
+											<button name="registerBtn" type="submit" class="button">Register User</button>
 										</form>
-										<a href="register.php" class="link">Don't Have an account?Register</a>
+										<a href="joinus.php" class="link">Have an account?Login</a>
 										<a href="admin/forgot-password.php" class="link">Reset Password</a>
 									</div>
 								</div>

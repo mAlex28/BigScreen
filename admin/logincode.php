@@ -18,12 +18,12 @@ if (isset($_POST['loginBtn'])) {
  } else if ($usertype['userRole'] == 2) {
 
     $_SESSION['username'] = $emailLogin;
-    header('Location: ../joinus.php');
+    header('Location: ../index.php');
 
  } else {
 
      $_SESSION['status'] = "Invalid credentials";
-     header('Location: login.php');
+     header('Location: ../joinus.php');
 
  }
 

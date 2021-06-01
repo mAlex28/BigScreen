@@ -1,5 +1,7 @@
-
-
+<?php
+session_start();
+include('admin/database/dbconfig.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -38,22 +40,43 @@
 						</div>
 					</a> <!-- #branding -->
 
+					
+				<?php
+				if ($_SESSION['username']) { ?>
+
 					<div class="main-navigation">
 						<button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
 						<ul class="menu">
 							<li class="menu-item"><a href="index.php">Home</a></li>
 							<li class="menu-item current-menu-item"><a href="about.php">About</a></li>
 							<li class="menu-item"><a href="review.php">Movie reviews</a></li>
-						<li class="menu-item"><a href="news.php">News</a></li>
-							<li class="menu-item"><a href="joinus.php">Join us</a></li>
+							<li class="menu-item"><a href="news.php">News</a></li>
+							<li class="menu-item"><a href="#"><?php echo $_SESSION['username']; ?></a></li>
 							<li class="menu-item"><a href="contact.php">Contact</a></li>
 						</ul> <!-- .menu -->
-
 						<form action="#" class="search-form">
 							<input type="text" placeholder="Search...">
 							<button><i class="fa fa-search"></i></button>
 						</form>
 					</div> <!-- .main-navigation -->
+
+				<?php } else { ?>
+					<div class="main-navigation">
+						<button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
+						<ul class="menu">
+							<li class="menu-item"><a href="index.php">Home</a></li>
+							<li class="menu-item current-menu-item"><a href="about.php">About</a></li>
+							<li class="menu-item"><a href="review.php">Movie reviews</a></li>
+							<li class="menu-item"><a href="news.php">News</a></li>
+							<li class="menu-item"><a href="joinus.php">Join Us</a></li>
+							<li class="menu-item"><a href="contact.php">Contact</a></li>
+						</ul> <!-- .menu -->
+						<form action="#" class="search-form">
+							<input type="text" placeholder="Search...">
+							<button><i class="fa fa-search"></i></button>
+						</form>
+					</div> <!-- .main-navigation -->
+				<?php } ?>
 
 					<div class="mobile-navigation"></div>
 				</div>
