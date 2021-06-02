@@ -43,32 +43,35 @@ include('dbconfig.php');
 				<?php
 				if (isset($_SESSION['username'])) {
 					$uemail = $_SESSION['username'];
-					$userquery = "SELECT * FROM users WHERE email = $uemail";
+					$userquery = "SELECT * FROM users WHERE email = '$uemail'";
 					$userquery_run = mysqli_query($con, $userquery);
 
+					if (mysqli_num_rows($userquery_run) > 0) {
+						while ($data = mysqli_fetch_assoc($userquery_run)) {
 				?>
 
-					<div class="main-navigation">
-						<button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
-						<ul class="menu">
-							<li class="menu-item"><a href="index.php">Home</a></li>
-							<li class="menu-item"><a href="about.php">About</a></li>
-							<li class="menu-item current-menu-item"><a href="review.php">Movie reviews</a></li>
-							<li class="menu-item"><a href="news.php">News</a></li>
-							<li class="menu-item"><a href="#" id="userid"><?php echo $uemail; ?></a></li>
-							<li class="menu-item"><a href="contact.php">Contact</a></li>
-						</ul> <!-- .menu -->
+							<div class="main-navigation">
+								<button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
+								<ul class="menu">
+									<li class="menu-item"><a href="index.php">Home</a></li>
+									<li class="menu-item"><a href="about.php">About</a></li>
+									<li class="menu-item current-menu-item"><a href="review.php">Movie reviews</a></li>
+									<li class="menu-item"><a href="news.php">News</a></li>
+									<li class="menu-item"><a href="#"><?php echo $data['username']; ?></a></li>
+									<li class="menu-item"><a href="contact.php">Contact</a></li>
+								</ul> <!-- .menu -->
+								<form action="#" class="search-form">
+									<input type="text" placeholder="Search...">
+									<button><i class="fa fa-search"></i></button>
+								</form>
+							</div> <!-- .main-navigation -->
+							<input id="userid" type="hidden" value="<?php echo $data['id']; ?>">
 
-						
-						<form action="#" class="search-form">
-							<input type="text" placeholder="Search...">
-							<button><i class="fa fa-search"></i></button>
-						</form>
-					</div> <!-- .main-navigation -->
-
-
-
-				<?php } else { ?>
+					<?php 	}
+					} else {
+						echo 'Error';
+					}
+				} else { ?>
 					<div class="main-navigation">
 						<button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
 						<ul class="menu">
@@ -128,7 +131,7 @@ include('dbconfig.php');
 											<li><strong>Year:</strong> <?php echo $row['myear'];  ?></li>
 											<li><strong>Category:</strong> <?php echo $row['category'];  ?></li>
 											<input type="text" id="ratemovieid" value="<?php echo $movieid; ?>">
-										
+
 										</ul>
 									</div>
 								</div> <!-- .row -->
@@ -163,33 +166,33 @@ include('dbconfig.php');
 										$numcom = mysqli_num_rows($querycmnt_run);
 
 										if ($numcom > 0) {
-											while ($row = mysqli_fetch_assoc($querycmnt_run)) { 
-										
+											while ($row = mysqli_fetch_assoc($querycmnt_run)) {
+
 										?>
-											<h3><?php echo $numcom; ?> Comments</h3>
+												<h3><?php echo $numcom; ?> Comments</h3>
 
-											<?php
-											$movie_id = $row['movieId'];
-											$movie_name = "SELECT * FROM movies WHERE mid = '$movie_id'";
-											$movie_name_run = mysqli_query($con, $movie_name);
+												<?php
+												$movie_id = $row['movieId'];
+												$movie_name = "SELECT * FROM movies WHERE mid = '$movie_id'";
+												$movie_name_run = mysqli_query($con, $movie_name);
 
-											$user_id = $row['userId'];
-											$user_name = "SELECT * FROM users WHERE id = '$user_id'";
-											$user_name_run = mysqli_query($con, $user_name);
-											?>
+												$user_id = $row['userId'];
+												$user_name = "SELECT * FROM users WHERE id = '$user_id'";
+												$user_name_run = mysqli_query($con, $user_name);
+												?>
 
-											<div class="comments">
-												<div class='media-body'>
-													<h4 class='media-heading'> <?php
-																				foreach ($user_name_run as $user_row) {
-																					echo $user_row['username'];
-																				}
-																				?></h4>
-													<p class="media-cmnt">
-														<?php echo $row['comment'];  ?>
-													</p>
+												<div class="comments">
+													<div class='media-body'>
+														<h4 class='media-heading'> <?php
+																					foreach ($user_name_run as $user_row) {
+																						echo $user_row['username'];
+																					}
+																					?></h4>
+														<p class="media-cmnt">
+															<?php echo $row['comment'];  ?>
+														</p>
+													</div>
 												</div>
-											</div>
 										<?php
 											}
 										} else {
@@ -284,20 +287,21 @@ include('dbconfig.php');
 	<script src="js/app.js"></script>
 	<script>
 		var ratedIndex = -1;
-		var userid = $("#userid").text();
+		var usid = $("#userid").val();
 		var movieid = $("#ratemovieid").val();
-
 
 		$(document).ready(function() {
 			resetRatingColors();
 
 			if (localStorage.getItem('ratedIndex') != null) {
 				setStars(parseInt(localStorage.getItem('ratedIndex')));
+				usid = localStorage.getItem('userid');
 			}
 
 			$('.fa-star').on('click', function() {
 				ratedIndex = parseInt($(this).data('index'));
 				localStorage.setItem('ratedIndex', ratedIndex);
+				saveToDatabase();
 			});
 
 			$('.fa-star').mouseover(function() {
@@ -314,25 +318,28 @@ include('dbconfig.php');
 				}
 			});
 
-			// function saveToDatabase() {
-			// 	$.ajax({
-			// 		url : "ratings.php",
-			// 		method : "POST",
-			// 		dataType : 'json',
-			// 		data: {
-			// 			save: 1,
-			// 			userid:
-			// 			ratedIndex: ratedIndex
-			// 		}, success: function(r) {
-
-			// 		}
-			// 	});
-			// }
+			function saveToDatabase() {
+				$.ajax({
+					url: "ratings.php",
+					method: "POST",
+					dataType: 'json',
+					data: {
+						save: 1,
+						userid: usid,
+						movieid: movieid,
+						ratedIndex: ratedIndex
+					},
+					success: function(r) {
+						usid = r.id;
+						localStorage.setItem('userid', usid);
+					}
+				});
+			}
 
 			function setStars(max) {
 				for (var i = 0; i <= max; i++) {
-						$('.fa-star:eq(' + i + ')').css('color', '#ffaa3c');
-					}
+					$('.fa-star:eq(' + i + ')').css('color', '#ffaa3c');
+				}
 			}
 
 			function resetRatingColors() {
