@@ -569,6 +569,55 @@ ul.arrow li a:hover {
   color: #ffaa3c;
 }
 
+.logToCmnt {
+  padding: 20px;
+  background-color: rgb(238, 236, 236);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.logToCmnt h2{
+  font-size: medium;
+}
+
+.logToCmnt .logBtn{
+  background-color: #ffaa3c;
+  border: none;
+  border-radius: 10%;
+  padding: 10px;
+  color: #000;
+}
+
+.view-comments {
+  padding: 20px;
+}
+
+.comments {
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.comments h4 {
+	margin:0 0 10px;
+}
+
+.comments h4 span {
+	font-size:14px;
+	float:right;
+	color:#999999;
+}
+
+.comments p {
+	margin-bottom:15px;
+	text-align:justify;
+}
+
+.media-cmnt {
+	margin:0;
+}
+
 .feature {
   margin-bottom: 30px;
   display: flex;
@@ -576,6 +625,7 @@ ul.arrow li a:hover {
   align-items: center;
   justify-content: center;
 }
+
 .feature .feature-title {
   color: #ffaa3c;
   font-size: 30px;

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('admin/database/dbconfig.php');
+include('dbconfig.php');
 ?>
 
 <!DOCTYPE html>
@@ -27,10 +27,7 @@ include('admin/database/dbconfig.php');
 
 </head>
 
-
 <body>
-
-
 	<div id="site-content">
 		<header class="site-header">
 			<div class="container">
@@ -42,9 +39,14 @@ include('admin/database/dbconfig.php');
 					</div>
 				</a> <!-- #branding -->
 
-				
+
 				<?php
-				if ($_SESSION['username']) { ?>
+				if (isset($_SESSION['username'])) {
+					$uemail = $_SESSION['username'];
+					$userquery = "SELECT * FROM users WHERE email = $uemail";
+					$userquery_run = mysqli_query($con, $userquery);
+
+				?>
 
 					<div class="main-navigation">
 						<button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
@@ -53,14 +55,18 @@ include('admin/database/dbconfig.php');
 							<li class="menu-item"><a href="about.php">About</a></li>
 							<li class="menu-item current-menu-item"><a href="review.php">Movie reviews</a></li>
 							<li class="menu-item"><a href="news.php">News</a></li>
-							<li class="menu-item"><a href="#"><?php echo $_SESSION['username']; ?></a></li>
+							<li class="menu-item"><a href="#" id="userid"><?php echo $uemail; ?></a></li>
 							<li class="menu-item"><a href="contact.php">Contact</a></li>
 						</ul> <!-- .menu -->
+
+						
 						<form action="#" class="search-form">
 							<input type="text" placeholder="Search...">
 							<button><i class="fa fa-search"></i></button>
 						</form>
 					</div> <!-- .main-navigation -->
+
+
 
 				<?php } else { ?>
 					<div class="main-navigation">
@@ -88,8 +94,10 @@ include('admin/database/dbconfig.php');
 				<div class="page">
 					<?php
 					$movieid = $_GET['movieid'];
+
 					$query = "SELECT * FROM movies WHERE mid = $movieid";
 					$query_run = mysqli_query($con, $query);
+
 					if (mysqli_num_rows($query_run) > 0) {
 						while ($row = mysqli_fetch_assoc($query_run)) {
 					?>
@@ -119,21 +127,76 @@ include('admin/database/dbconfig.php');
 											<li><strong>IMDB:</strong> <?php echo $row['imdb'];  ?></li>
 											<li><strong>Year:</strong> <?php echo $row['myear'];  ?></li>
 											<li><strong>Category:</strong> <?php echo $row['category'];  ?></li>
+											<input type="text" id="ratemovieid" value="<?php echo $movieid; ?>">
+										
 										</ul>
-
-										<!-- <ul class="starring">
-										<li><strong>Directors:</strong> Kirk de Mico (as Kirk DeMico). Chris Sanders</li>
-										<li><strong>Writers:</strong> Chris Sanders (screenplay), Kirk De Micco (screenplay)</li>
-										<li><strong>Stars:</strong> Nicolas Cage, Ryan Reynolds, Emma Stone</li>
-									</ul> -->
 									</div>
 								</div> <!-- .row -->
+
 								<div class="entry-content">
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ac pharetra libero. Integer in suscipit diam, sit amet eleifend nunc. Curabitur egestas nunc nulla, in aliquet risus efficitur quis. Vivamus facilisis est libero, vitae iaculis nulla cursus in. Suspendisse potenti. In et fringilla ipsum, quis varius quam. Morbi eleifend venenatis diam finibus vehicula. Suspendisse eu blandit metus. Sed feugiat pellentesque turpis, in lacinia ipsum. Vivamus nec luctus orci.</p>
-									<p>Aenean vehicula eget risus sit amet posuere. Maecenas id risus maximus, malesuada leo eget, pellentesque arcu. Phasellus vitae leo rhoncus, consectetur mauris vitae, lacinia quam. Nunc turpis erat, accumsan eget justo quis, auctor ultricies magna. Mauris sodales, risus sit amet hendrerit tincidunt, erat ante facilisis sapien, sit amet maximus neque massa a felis. Nullam consectetur justo massa, vel commodo metus gravida in. Aliquam erat volutpat. Nullam a lorem sed lorem euismod gravida a eu velit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec venenatis ac ligula vel pharetra. Aenean vitae nulla sed dui volutpat euismod. Nam ex quam, consequat id rutrum sed, porttitor id lectus. Vestibulum venenatis consectetur justo ut sagittis. Duis dignissim tincidunt quam, nec pulvinar libero luctus nec. Morbi blandit nec lorem in ullamcorper.</p>
-									<p>Vestibulum et odio massa. Integer at odio ipsum. Proin vitae tristique nibh. Aenean semper ante sit amet ante ultricies tincidunt. Curabitur cursus, urna non ultricies posuere, dolor lacus cursus lorem, a dapibus nibh ex eget sem. Aliquam semper sagittis sapien a fermentum. Nullam sed iaculis lacus, et imperdiet risus. Praesent quis turpis ac nunc sodales tincidunt. Aliquam at leo odio. Sed a tempor nisl, et mattis felis. Nam mauris nunc, commodo ac orci ut, auctor viverra mauris.</p>
-									<p>Quisque nec justo vitae metus consectetur ultrices. Duis venenatis lorem massa, eu pulvinar quam faucibus sed. Nulla fringilla lorem sit amet sagittis mattis. Nunc in leo a odio mollis consectetur. Etiam ac nisl eget diam ullamcorper porta. Aliquam consectetur neque eget metus egestas sollicitudin. Curabitur ultrices urna et feugiat malesuada.</p>
-									<p>Nulla facilisi. Fusce sed dapibus leo, eu lobortis ante. Duis luctus mauris in ante semper, ut feugiat nisi condimentum. Nullam a odio et justo suscipit tempus. Vestibulum placerat dapibus quam, a egestas turpis efficitur id. Integer suscipit placerat placerat. Phasellus in lorem quis leo egestas accumsan. Nam et euismod ligula. Duis nec erat aliquam, sollicitudin diam non, ornare leo. Pellentesque augue leo, faucibus in nunc nec, tincidunt ullamcorper tortor. Phasellus aliquam condimentum elit. Nulla facilisi. Donec magna libero, bibendum eu faucibus et, mattis at felis. Integer turpis nibh, blandit nec elit vel, euismod laoreet quam. Donec vel ante nisi. Nunc luctus a tellus non.</p>
+									<?php
+									if (isset($_SESSION['username'])) { ?>
+										<div class="user-ratings">
+											<i class="fa fa-star fa-2x" data-index="0"></i>
+											<i class="fa fa-star fa-2x" data-index="1"></i>
+											<i class="fa fa-star fa-2x" data-index="2"></i>
+											<i class="fa fa-star fa-2x" data-index="3"></i>
+											<i class="fa fa-star fa-2x" data-index="4"></i>
+										</div>
+										<div class="user-comments">
+											<input type="text" name="comnt" class="user-comment">
+											<button type="submit" name="commnetBtn">Comment</button>
+										</div>
+									<?php
+									} else { ?>
+										<div class="logToCmnt">
+											<h2>You are not logged in</h2>
+											<a href="joinus.php" class="logBtn">Log In to Comment</a>
+										</div>
+									<?php	} ?>
+
+									<div class="view-comments">
+										<?php
+										$querycmnt = "SELECT * FROM comments WHERE movieId = $movieid";
+										$querycmnt_run = mysqli_query($con, $querycmnt);
+
+										$numcom = mysqli_num_rows($querycmnt_run);
+
+										if ($numcom > 0) {
+											while ($row = mysqli_fetch_assoc($querycmnt_run)) { 
+										
+										?>
+											<h3><?php echo $numcom; ?> Comments</h3>
+
+											<?php
+											$movie_id = $row['movieId'];
+											$movie_name = "SELECT * FROM movies WHERE mid = '$movie_id'";
+											$movie_name_run = mysqli_query($con, $movie_name);
+
+											$user_id = $row['userId'];
+											$user_name = "SELECT * FROM users WHERE id = '$user_id'";
+											$user_name_run = mysqli_query($con, $user_name);
+											?>
+
+											<div class="comments">
+												<div class='media-body'>
+													<h4 class='media-heading'> <?php
+																				foreach ($user_name_run as $user_row) {
+																					echo $user_row['username'];
+																				}
+																				?></h4>
+													<p class="media-cmnt">
+														<?php echo $row['comment'];  ?>
+													</p>
+												</div>
+											</div>
+										<?php
+											}
+										} else {
+											echo "No Comments";
+										}
+										?>
+									</div>
 								</div>
 							</div>
 					<?php
@@ -216,12 +279,67 @@ include('admin/database/dbconfig.php');
 	</div>
 	<!-- Default snippet for navigation -->
 
-
-
 	<script src="js/jquery-1.11.1.min.js"></script>
 	<script src="js/plugins.js"></script>
 	<script src="js/app.js"></script>
+	<script>
+		var ratedIndex = -1;
+		var userid = $("#userid").text();
+		var movieid = $("#ratemovieid").val();
 
+
+		$(document).ready(function() {
+			resetRatingColors();
+
+			if (localStorage.getItem('ratedIndex') != null) {
+				setStars(parseInt(localStorage.getItem('ratedIndex')));
+			}
+
+			$('.fa-star').on('click', function() {
+				ratedIndex = parseInt($(this).data('index'));
+				localStorage.setItem('ratedIndex', ratedIndex);
+			});
+
+			$('.fa-star').mouseover(function() {
+				resetRatingColors();
+				var currentIndex = parseInt($(this).data('index'));
+				setStars(currentIndex);
+
+			});
+
+			$('.fa-star').mouseleave(function() {
+				resetRatingColors();
+				if (ratedIndex != -1) {
+					setStars(ratedIndex);
+				}
+			});
+
+			// function saveToDatabase() {
+			// 	$.ajax({
+			// 		url : "ratings.php",
+			// 		method : "POST",
+			// 		dataType : 'json',
+			// 		data: {
+			// 			save: 1,
+			// 			userid:
+			// 			ratedIndex: ratedIndex
+			// 		}, success: function(r) {
+
+			// 		}
+			// 	});
+			// }
+
+			function setStars(max) {
+				for (var i = 0; i <= max; i++) {
+						$('.fa-star:eq(' + i + ')').css('color', '#ffaa3c');
+					}
+			}
+
+			function resetRatingColors() {
+				$('.fa-star').css('color', '#84878d');
+			}
+		})
+	</script>
 </body>
 
 </html>

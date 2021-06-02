@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('admin/database/dbconfig.php');
+include('dbconfig.php');
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +41,7 @@ include('admin/database/dbconfig.php');
 				</a> <!-- #branding -->
 
 				<?php
-				if ($_SESSION['username']) { ?>
+				if (isset( $_SESSION['username'])) { ?>
 					<div class="main-navigation">
 						<button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
 						<ul class="menu">
@@ -67,7 +67,7 @@ include('admin/database/dbconfig.php');
 							</li>
 							<li class="menu-item"><a href="contact.php">Contact</a></li>
 						</ul> <!-- .menu -->
-						<form action="searchmovie.php" method="POST" class="search-form">
+						<form action="#" class="search-form">
 							<input type="text" name="name" placeholder="Search...">
 							<button type="submit" name="searchBtn"><i class="fa fa-search"></i></button>
 						</form>

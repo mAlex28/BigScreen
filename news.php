@@ -41,7 +41,7 @@ include('admin/database/dbconfig.php');
 
 				
 				<?php
-				if ($_SESSION['username']) { ?>
+				if (isset($_SESSION['username'])) { ?>
 
 					<div class="main-navigation">
 						<button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
