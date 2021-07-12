@@ -8,7 +8,7 @@ $con = mysqli_connect($server_name, $db_username, $db_password);
 $dbconfig = mysqli_select_db($con, $db_name);
 
 if ($dbconfig) {
-    echo "Database connected";
+    // echo "Database connected";
 } else {
     echo "connection failed";
 }

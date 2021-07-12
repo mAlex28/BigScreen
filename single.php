@@ -130,7 +130,7 @@ include('dbconfig.php');
 											<li><strong>IMDB:</strong> <?php echo $row['imdb'];  ?></li>
 											<li><strong>Year:</strong> <?php echo $row['myear'];  ?></li>
 											<li><strong>Category:</strong> <?php echo $row['category'];  ?></li>
-											<input type="text" id="ratemovieid" value="<?php echo $movieid; ?>">
+											<input type="hidden" id="ratemovieid" value="<?php echo $movieid; ?>">
 
 										</ul>
 									</div>
